@@ -2,9 +2,9 @@ extends Node
 
 export(Resource) var start_level
 export(float) var clue_max_rotation = 5
-export(float) var clue_max_random_offset = 100
+export(float) var clue_max_random_offset = 70
 export(int) var n_rows = 2
-export(int) var debug_mode = true
+export(bool) var debug_mode = true
 
 var Clue = preload("res://scenes/Clue.tscn")
 
@@ -24,13 +24,14 @@ func _ready():
 	# Programatically add clues to the board
 	var clues_array = shuffle(start_level.story + start_level.decoy)
 	var last_pos = top_left / 2
-	var x_offset = width / (clues_array.size() / n_rows)
+	var n_cols = int(clues_array.size() / float(n_rows) + 0.5)
+	var x_offset = width / n_cols
 	var y_offset = height / n_rows
 	var i = 1
 	for clue_resource in clues_array:
 		var clue = Clue.instance()
 		clue.resource = clue_resource
-		clue.size = Vector2.ONE * 4
+		clue.size = Vector2.ONE * 5
 		clue.global_position = last_pos
 		clue.connect("hovered", self, "on_clue_hover")
 		clue.connect("unhovered", self, "on_clue_unhover")
@@ -38,7 +39,7 @@ func _ready():
 		clues.add_child(clue)
 		last_pos.x += x_offset
 
-		if i % n_rows == 0:
+		if i % n_cols == 0:
 			last_pos.x = top_left.x
 			last_pos.y += y_offset
 		i += 1

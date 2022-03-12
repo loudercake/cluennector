@@ -8,6 +8,6 @@
 
 [resource]
 script = ExtResource( 1 )
-title = ""
+title = "A new level"
 story = [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ]
-decoy = [ ExtResource( 2 ) ]
+decoy = [ ExtResource( 2 ), ExtResource( 4 ) ]
