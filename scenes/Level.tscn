@@ -8,7 +8,6 @@
 [node name="Level" type="Node"]
 script = ExtResource( 2 )
 start_level = ExtResource( 3 )
-clue_max_rotation = 20.0
 
 [node name="Control" type="Control" parent="."]
 margin_left = 65.0

@@ -7,3 +7,4 @@
 script = ExtResource( 1 )
 description = "forth clue"
 texture = ExtResource( 2 )
+next = [  ]

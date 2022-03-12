@@ -1,8 +1,9 @@
 extends Node
 
 export(Resource) var start_level
-export(float) var clue_max_rotation = 5
+export(float) var clue_max_rotation = 20
 export(float) var clue_max_random_offset = 70
+export(float) var clue_max_random_scale = 0.5
 export(int) var n_rows = 2
 export(bool) var debug_mode = true
 
@@ -45,10 +46,10 @@ func _ready():
 		i += 1
 
 		# Randomize
-		randomize()
-		clue.rotation = (randf() - 0.5) * 2 * clue_max_rotation * PI / 180
-		clue.global_position.x += (randf() - 0.5) * 2 * clue_max_random_offset
-		clue.global_position.y -= (randf() - 0.5) * 2 * clue_max_random_offset
+		clue.rotation =  rndf() * clue_max_rotation * PI / 180
+		clue.global_position.x += rndf() * clue_max_random_offset
+		clue.global_position.y -= rndf() * clue_max_random_offset
+		clue.scale = Vector2.ONE * (1 + rndf() * clue_max_random_scale)
 
 	clues.scale = Vector2.ONE * 0.8
 
@@ -57,6 +58,10 @@ func _process(_delta):
 	if debug_mode:
 		if Input.is_action_just_pressed("reset"):
 			get_tree().reload_current_scene()
+
+func rndf():
+	randomize()
+	return (randf() - 0.5) * 2
 
 
 func shuffle(list):

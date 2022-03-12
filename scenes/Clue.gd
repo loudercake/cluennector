@@ -5,6 +5,7 @@ var description: String = ""
 var size = Vector2.ONE * 5
 var texture: Texture
 var resource
+var next
 
 onready var collision = $Area2D/CollisionShape2D
 onready var sprite = $Sprite
@@ -17,6 +18,7 @@ signal clicked
 func _ready():
 	texture = resource.texture
 	description = resource.description
+	next = resource.next
 	if not description:
 		description = "No description."
 	collision.shape.extents = size
