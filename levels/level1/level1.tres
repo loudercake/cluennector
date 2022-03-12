@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://scenes/LevelResource.gd" type="Script" id=1]
+[ext_resource path="res://levels/level1/clue3.tres" type="Resource" id=2]
+[ext_resource path="res://levels/level1/clue2.tres" type="Resource" id=3]
+[ext_resource path="res://levels/level1/clue4.tres" type="Resource" id=4]
+[ext_resource path="res://levels/level1/clue1.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+title = ""
+story = [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ]
+decoy = [ ExtResource( 2 ) ]

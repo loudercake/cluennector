@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://levels/level1/2.png" type="Texture" id=1]
+[ext_resource path="res://levels/level1/1.png" type="Texture" id=2]
+[ext_resource path="res://levels/level1/4.png" type="Texture" id=3]
+[ext_resource path="res://levels/level1/3.png" type="Texture" id=4]
+[ext_resource path="res://scenes/LevelResource.gd" type="Script" id=5]
+
+[resource]
+script = ExtResource( 5 )
+title = ""
+story = [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ]
+decoy = [ ExtResource( 4 ) ]

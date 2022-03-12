@@ -1,0 +1,8 @@
+{
+  "clues": [
+    {"file": "1.png", "description": "Number one"},
+    {"file": "2.png", "description": "Number two"},
+    {"file": "3.png", "description": "Number three", "decoy": true},
+    {"file": "4.png", "description": "Number four"}
+  ]
+}
