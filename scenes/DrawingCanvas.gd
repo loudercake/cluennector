@@ -28,8 +28,9 @@ func _draw():
 	draw_dashed_line(dash_start, dash_end, dash_color, dash_width, dash_length)
 	for clue in clues:
 		if clue.next:
-			var arrow_start = clue.initial_position
-			var arrow_end = clue.next.initial_position
+			var dir = (clue.next.initial_position - clue.initial_position).normalized()
+			var arrow_start = clue.initial_position + dir * clue.diagonal_size() / 2
+			var arrow_end  = clue.next.initial_position - dir * clue.next.diagonal_size() / 2
 			draw_arrow(arrow_start, arrow_end, arrow_color, arrow_width, arrow_head_width, arrow_head_length)
 
 func _process(_delta):

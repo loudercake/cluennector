@@ -31,6 +31,8 @@ one_shot = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+z_index = 2000
 shape = SubResource( 1 )
 
 [node name="HoverTween" type="Tween" parent="."]

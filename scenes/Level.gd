@@ -4,6 +4,7 @@ export(Resource) var start_level
 export(float) var clue_max_rotation = 20
 export(float) var clue_max_random_offset = 70
 export(float) var clue_max_random_scale = 0.5
+export(float) var clue_base_size = 5
 export(int) var n_rows = 2
 export(bool) var debug_mode = true
 
@@ -17,22 +18,28 @@ var is_connecting = false
 var can_connect = false
 var start_clue = null
 var end_clue = null
+var clue_view_scale = 40
 
 onready var board = $Board
 onready var clues = $Board/Clues
 onready var canvas = $Canvas
 onready var description_label = $Control/DescLabel
 onready var background = $Control/ColorRect
+onready var board_top_left = $BoardLimits/TopLeft
+onready var board_bottom_right = $BoardLimits/BottomRight
 
 func _ready():
-	top_left = board.global_position
-	bottom_right = top_left + board.texture.get_size()
+	# top_left = board.global_position
+	# bottom_right = top_left + board.texture.get_size()
+	top_left = board_top_left.global_position
+	bottom_right = board_bottom_right.global_position
+
 	var width = abs(top_left.x - bottom_right.x)
 	var height = abs(top_left.y - bottom_right.y)
 
 	# Programatically add clues to the board
 	var clues_array = shuffle(start_level.story + start_level.decoy)
-	var last_pos = top_left / 2
+	var last_pos = top_left
 	var n_cols = int(clues_array.size() / float(n_rows) + 0.5)
 	var x_offset = width / n_cols
 	var y_offset = height / n_rows
@@ -41,7 +48,8 @@ func _ready():
 		# Create the clue
 		var clue = Clue.instance()
 		clue.resource = clue_resource
-		clue.size = Vector2.ONE * 5
+		clue.size = Vector2.ONE * clue_base_size
+		clue.position = Vector2.ZERO
 		clue.global_position = last_pos
 		clue.connect("hovered", self, "on_clue_hover")
 		clue.connect("mouse_entered", self, "on_clue_mouse_entered")
@@ -64,10 +72,11 @@ func _ready():
 		clue.rotation =  rndf() * clue_max_rotation * PI / 180
 		clue.global_position.x += rndf() * clue_max_random_offset
 		clue.global_position.y -= rndf() * clue_max_random_offset
-		clue.scale = Vector2.ONE * (1 + rndf() * clue_max_random_scale)
+		clue.scale = board.scale * (1 + rndf() * clue_max_random_scale)
 		board_clues.append(clue)
 
-	clues.scale = Vector2.ONE * 0.8
+	clues.scale = Vector2.ONE / board.scale
+	clue_view_scale = min(width, height) / clue_base_size / 2
 
 	for clue in board_clues:
 		clue.init()
@@ -111,23 +120,31 @@ func shuffle(list):
 	return shuffled_list
 
 func on_clue_mouse_entered(clue):
-	if not is_connecting or clue == start_clue:
+	if not is_connecting or clue == start_clue or clue.next == start_clue:
 		return
 	can_connect = true
 	clue.sprite.material.set_shader_param("color", clue.pressed_border_color)
 	end_clue = clue
 
+# hover after delay
 func on_clue_hover(clue):
 	if not viewing_clue:
 		description_label.text = clue.description
 
-func on_clue_unhover(clue):
-	if not is_connecting or clue == start_clue:
+# unhover and mouse exit
+func on_clue_unhover(_clue):
+	end_clue = null
+	if not is_connecting:
 		can_connect = false
 	if not viewing_clue:
 		description_label.text = ""
 
+# Mouse release over clue
 func on_clue_click(clue):
+	if is_connecting:
+		can_connect = false
+		return
+
 	if can_connect:
 		end_clue = clue
 		return
@@ -136,9 +153,9 @@ func on_clue_click(clue):
 		viewing_clue.return_animation()
 		return
 
-	var center = Vector2(512, 300)
+	var center = (top_left + bottom_right) / 2
 	description_label.text = clue.description
-	clue.click_animation(center, Vector2.ONE * 8, 2 * PI)
+	clue.click_animation(center, Vector2.ONE * clue_view_scale, 2 * PI)
 	viewing_clue = clue
 	background.visible = true
 
@@ -147,16 +164,16 @@ func on_drag_started(clue):
 	start_clue = clue
 	canvas.dash_start = clue.initial_position
 	canvas.dash_end = get_viewport().get_mouse_position()
-	print("drag started: ", clue)
 
-func on_drag_stopped(clue):
-	is_connecting = false
+func on_drag_stopped(_clue):
 	canvas.clear_dash()
 
 	# Connect
-	if can_connect:
+	if can_connect and end_clue and end_clue.next != start_clue:
 		start_clue.next = end_clue
 		canvas.add_clue(start_clue)
+	elif start_clue:
+		start_clue.next = null
 	start_clue = null
 	end_clue = null
-	print("drag stopped: ", clue)
+	is_connecting = false

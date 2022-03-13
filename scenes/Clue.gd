@@ -10,8 +10,10 @@ const transition_time = 0.5
 
 var viewing = false
 var is_hovered: bool = false
+var mouse_pressed_inside = false
 var has_mouse: bool = false
 var has_drag_stared: bool = false
+
 var description: String = ""
 var size = Vector2.ONE * 5
 var texture: Texture
@@ -57,23 +59,40 @@ func init():
 	initial_rotation = rotation
 	initial_modulate = modulate
 
-func _process(_delta):
-	if viewing:
-		return
-	if Input.is_action_just_pressed("mouse_left_click") and has_mouse:
-		sprite.material.set_shader_param("color", pressed_border_color)
+func diagonal_size():
+	return (get_parent().get_parent().scale * size).length()
+
+func stop_drag():
+	has_drag_stared = false
+	emit_signal("drag_stopped", self)
+	sprite.material.set_shader_param("color", hover_border_color)
+	is_hovered = has_mouse
+	hover_animation()
+
+func _input(event):
+	if event is InputEventMouseMotion and mouse_pressed_inside:
+		if has_drag_stared:
+			return
 		has_drag_stared = true
 		emit_signal("drag_started", self)
-	elif Input.is_action_just_released("mouse_left_click") and has_mouse:
-		sprite.material.set_shader_param("color", hover_border_color)
-		emit_signal("clicked", self)
-	elif Input.is_action_just_released("mouse_left_click") and not has_mouse:
+
+func _process(_delta):
+	if viewing:
 		if has_drag_stared:
-			emit_signal("drag_stopped", self)
-		sprite.material.set_shader_param("color", hover_border_color)
+			stop_drag()
 		has_drag_stared = false
-		is_hovered = false
-		hover_animation()
+	elif Input.is_action_just_pressed("mouse_left_click") and has_mouse:
+		sprite.material.set_shader_param("color", pressed_border_color)
+		mouse_pressed_inside = true
+	elif Input.is_action_just_released("mouse_left_click") and has_mouse and not has_drag_stared and mouse_pressed_inside:
+		sprite.material.set_shader_param("color", hover_border_color)
+		if has_drag_stared:
+			stop_drag()
+		emit_signal("clicked", self)
+	elif Input.is_action_just_released("mouse_left_click"):
+		if has_drag_stared:
+			stop_drag()
+		mouse_pressed_inside = false
 
 func click_animation(to_position: Vector2, to_scale: Vector2, to_rotation: float):
 	z_index = 1000
@@ -150,6 +169,7 @@ func _on_Area2D_mouse_entered():
 
 func _on_Area2D_mouse_exited():
 	has_mouse = false
+	mouse_pressed_inside = false
 	if not is_hovered or viewing or has_drag_stared:
 		return
 	is_hovered = false

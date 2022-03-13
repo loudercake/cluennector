@@ -8,6 +8,8 @@
 [node name="Level" type="Node"]
 script = ExtResource( 2 )
 start_level = ExtResource( 3 )
+clue_max_random_offset = 30.0
+clue_max_random_scale = 0.2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2( 1, 0.96152 )
@@ -47,3 +49,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -14.0
 align = 1
+
+[node name="BoardLimits" type="Node2D" parent="."]
+
+[node name="TopLeft" type="Position2D" parent="BoardLimits"]
+position = Vector2( 85, 67 )
+__meta__ = {
+"_gizmo_extents_": 100.0
+}
+
+[node name="BottomRight" type="Position2D" parent="BoardLimits"]
+position = Vector2( 936, 477 )
+__meta__ = {
+"_gizmo_extents_": 100.0
+}
