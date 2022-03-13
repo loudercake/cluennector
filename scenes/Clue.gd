@@ -40,6 +40,7 @@ signal unhovered
 signal drag_started
 signal drag_stopped
 signal clicked
+signal right_clicked
 
 func _ready():
 	texture = resource.texture
@@ -93,6 +94,8 @@ func _process(_delta):
 		if has_drag_stared:
 			stop_drag()
 		mouse_pressed_inside = false
+	elif Input.is_action_just_released("mouse_right_click") and has_mouse:
+		emit_signal("right_clicked", self)
 
 func click_animation(to_position: Vector2, to_scale: Vector2, to_rotation: float):
 	z_index = 1000

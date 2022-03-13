@@ -71,6 +71,7 @@ func _ready():
 		clue.connect("clicked", self, "on_clue_click")
 		clue.connect("drag_started", self, "on_drag_started")
 		clue.connect("drag_stopped", self, "on_drag_stopped")
+		clue.connect("right_clicked", self, "on_clue_right_click")
 		last_pos.x += x_offset
 
 		# Add
@@ -179,11 +180,14 @@ func on_drag_started(clue):
 	canvas.dash_start = clue.initial_position
 	canvas.dash_end = get_viewport().get_mouse_position()
 
+func on_clue_right_click(clue):
+	clue.next = []
+
 func on_drag_stopped(_clue):
 	canvas.clear_dash()
 
 	# Connect
-	if can_connect and end_clue and not start_clue in end_clue.next and end_clue.resource in start_clue.resource.next and check_chain_until(start_clue):
+	if can_connect and end_clue and not start_clue in end_clue.next:
 		start_clue.next.append(end_clue)
 		canvas.add_clue(start_clue)
 	elif start_clue:
@@ -194,8 +198,7 @@ func on_drag_stopped(_clue):
 	is_connecting = false
 
 	if check_chain_complete():
-		win_btn.visible = true
-		top_label.text = "You won!"
+		win_level()
 
 
 ## Warning, you can cause infinite recurssion if you have a clue that references itself or a clue that references a clue that references itself
@@ -226,3 +229,19 @@ func _on_NextLevelBtn_pressed():
 	start_level.clue_base_size /= 1.03
 	Global.next_level = start_level
 	get_tree().reload_current_scene()
+
+
+func win_level():
+	win_btn.visible = true
+	top_label.text = "You won!"
+	for clue in board_clues:
+		clue.disconnect("hovered", self, "on_clue_hover")
+		clue.disconnect("mouse_entered", self, "on_clue_mouse_entered")
+		clue.disconnect("unhovered", self, "on_clue_unhover")
+		clue.disconnect("clicked", self, "on_clue_click")
+		clue.disconnect("drag_started", self, "on_drag_started")
+		clue.disconnect("drag_stopped", self, "on_drag_stopped")
+		clue.disconnect("right_clicked", self, "on_clue_right_click")
+
+func win_game():
+	top_label.text = "You won the game!"
