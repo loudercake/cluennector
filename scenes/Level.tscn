@@ -16,14 +16,15 @@ current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 
+[node name="Canvas" type="Node2D" parent="."]
+z_index = 10
+script = ExtResource( 4 )
+
 [node name="Board" type="Sprite" parent="."]
 position = Vector2( 65, 50 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 1 )
 centered = false
-
-[node name="Canvas" type="Node2D" parent="Board"]
-script = ExtResource( 4 )
 
 [node name="Clues" type="Node2D" parent="Board"]
 

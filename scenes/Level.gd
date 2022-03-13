@@ -13,9 +13,14 @@ var top_left = Vector2.ZERO
 var bottom_right = Vector2.ONE
 var viewing_clue = null
 var board_clues = []
+var is_connecting = false
+var can_connect = false
+var start_clue = null
+var end_clue = null
 
 onready var board = $Board
 onready var clues = $Board/Clues
+onready var canvas = $Canvas
 onready var description_label = $Control/DescLabel
 onready var background = $Control/ColorRect
 
@@ -39,8 +44,11 @@ func _ready():
 		clue.size = Vector2.ONE * 5
 		clue.global_position = last_pos
 		clue.connect("hovered", self, "on_clue_hover")
+		clue.connect("mouse_entered", self, "on_clue_mouse_entered")
 		clue.connect("unhovered", self, "on_clue_unhover")
 		clue.connect("clicked", self, "on_clue_click")
+		clue.connect("drag_started", self, "on_drag_started")
+		clue.connect("drag_stopped", self, "on_drag_stopped")
 		last_pos.x += x_offset
 
 		# Add
@@ -76,6 +84,16 @@ func _process(_delta):
 		viewing_clue = null
 		description_label.text = ""
 
+	if Input.is_action_just_released("mouse_left_click"):
+		is_connecting = false
+
+func _input(event):
+	if not is_connecting:
+		return
+	if event is InputEventMouseMotion:
+		canvas.dash_end = event.position
+
+
 ## Random float between -1 and 1
 func rndf():
 	randomize()
@@ -92,15 +110,28 @@ func shuffle(list):
 		index_list.remove(x)
 	return shuffled_list
 
+func on_clue_mouse_entered(clue):
+	if not is_connecting or clue == start_clue:
+		return
+	can_connect = true
+	clue.sprite.material.set_shader_param("color", clue.pressed_border_color)
+	end_clue = clue
+
 func on_clue_hover(clue):
 	if not viewing_clue:
 		description_label.text = clue.description
 
-func on_clue_unhover(_clue):
+func on_clue_unhover(clue):
+	if not is_connecting or clue == start_clue:
+		can_connect = false
 	if not viewing_clue:
 		description_label.text = ""
 
 func on_clue_click(clue):
+	if can_connect:
+		end_clue = clue
+		return
+
 	if viewing_clue:
 		viewing_clue.return_animation()
 		return
@@ -110,3 +141,22 @@ func on_clue_click(clue):
 	clue.click_animation(center, Vector2.ONE * 8, 2 * PI)
 	viewing_clue = clue
 	background.visible = true
+
+func on_drag_started(clue):
+	is_connecting = true
+	start_clue = clue
+	canvas.dash_start = clue.initial_position
+	canvas.dash_end = get_viewport().get_mouse_position()
+	print("drag started: ", clue)
+
+func on_drag_stopped(clue):
+	is_connecting = false
+	canvas.clear_dash()
+
+	# Connect
+	if can_connect:
+		start_clue.next = end_clue
+		canvas.add_clue(start_clue)
+	start_clue = null
+	end_clue = null
+	print("drag stopped: ", clue)

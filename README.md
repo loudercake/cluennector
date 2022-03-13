@@ -24,7 +24,8 @@ Press backspace to reset the level and see the clues be randomly placed (this is
 - [x] Fill board grid
 - [x] Randomize clues order
 - [ ] Draw canvas to connect clues (node connecting sorta system)
-- [ ] Approach to clue on hover, show description
+- [x] Approach to clue on hover, show description
+- [ ] Check connections validity
 - [ ] Win effect
 - [ ] Load next level on win
 - [ ] If there is no next level, game beat win congratulations credits yay animation.

@@ -1,5 +1,8 @@
 extends Node2D
 
+export var hover_border_color = Color(0.95, 0.1, 0, 1)
+export var pressed_border_color = Color(0, 0.1, 0.95, 1)
+
 const hover_scale = 1.3
 const modulate_scale = 1.2
 const border_width = 2.5
@@ -8,11 +11,13 @@ const transition_time = 0.5
 var viewing = false
 var is_hovered: bool = false
 var has_mouse: bool = false
+var has_drag_stared: bool = false
 var description: String = ""
 var size = Vector2.ONE * 5
 var texture: Texture
 var resource
-var next
+var valid_next_list = []
+var next = null
 
 
 var initial_scale = Vector2.ONE
@@ -28,19 +33,24 @@ onready var hover_tween = $HoverTween
 onready var tween = $Tween
 
 signal hovered
+signal mouse_entered
 signal unhovered
+signal drag_started
+signal drag_stopped
 signal clicked
 
 func _ready():
 	texture = resource.texture
 	description = resource.description
-	next = resource.next
+	valid_next_list = resource.next
 	if not description:
 		description = "No description."
 	collision.shape.extents = size
 	sprite.texture = texture
 	sprite.scale = size / texture.get_size() * 2
+	sprite.material.set_shader_param("color", hover_border_color)
 
+## stores world scale, position and rotation
 func init():
 	initial_scale = scale
 	initial_position = global_position
@@ -48,12 +58,29 @@ func init():
 	initial_modulate = modulate
 
 func _process(_delta):
-	if Input.is_action_just_released("mouse_left_click") and has_mouse and not viewing:
+	if viewing:
+		return
+	if Input.is_action_just_pressed("mouse_left_click") and has_mouse:
+		sprite.material.set_shader_param("color", pressed_border_color)
+		has_drag_stared = true
+		emit_signal("drag_started", self)
+	elif Input.is_action_just_released("mouse_left_click") and has_mouse:
+		sprite.material.set_shader_param("color", hover_border_color)
 		emit_signal("clicked", self)
+	elif Input.is_action_just_released("mouse_left_click") and not has_mouse:
+		if has_drag_stared:
+			emit_signal("drag_stopped", self)
+		sprite.material.set_shader_param("color", hover_border_color)
+		has_drag_stared = false
+		is_hovered = false
+		hover_animation()
 
 func click_animation(to_position: Vector2, to_scale: Vector2, to_rotation: float):
 	z_index = 1000
 	viewing = true
+	if has_drag_stared:
+		emit_signal("drag_stopped", self)
+
 	hover_tween.stop_all()
 	tween.stop_all()
 	modulate = initial_modulate
@@ -113,6 +140,7 @@ func hover_animation():
 	hover_tween.start()
 
 func _on_Area2D_mouse_entered():
+	emit_signal("mouse_entered", self)
 	has_mouse = true
 	if is_hovered or viewing:
 		return
@@ -122,10 +150,11 @@ func _on_Area2D_mouse_entered():
 
 func _on_Area2D_mouse_exited():
 	has_mouse = false
-	if not is_hovered or viewing:
+	if not is_hovered or viewing or has_drag_stared:
 		return
 	is_hovered = false
 	emit_signal("unhovered", self)
+	sprite.material.set_shader_param("color", hover_border_color)
 	hover_animation()
 
 func _on_Timer_timeout():
