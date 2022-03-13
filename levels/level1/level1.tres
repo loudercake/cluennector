@@ -9,5 +9,10 @@
 [resource]
 script = ExtResource( 1 )
 title = "A new level"
-story = [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ]
-decoy = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]
+story = [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]
+decoy = [  ]
+clue_max_rotation = 0.0
+clue_max_random_offset = 0.0
+clue_max_random_scale = 0.0
+clue_base_size = 0.0
+n_rows = 0

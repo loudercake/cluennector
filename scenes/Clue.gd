@@ -19,7 +19,7 @@ var size = Vector2.ONE * 5
 var texture: Texture
 var resource
 var valid_next_list = []
-var next = null
+var next = []
 
 
 var initial_scale = Vector2.ONE

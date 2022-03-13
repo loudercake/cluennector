@@ -8,11 +8,8 @@
 [node name="Level" type="Node"]
 script = ExtResource( 2 )
 start_level = ExtResource( 3 )
-clue_max_random_offset = 30.0
-clue_max_random_scale = 0.2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2( 1, 0.96152 )
 anchor_mode = 0
 current = true
 drag_margin_h_enabled = true
@@ -24,7 +21,7 @@ script = ExtResource( 4 )
 
 [node name="Board" type="Sprite" parent="."]
 position = Vector2( 65, 50 )
-scale = Vector2( 7, 7 )
+scale = Vector2( 8, 8 )
 texture = ExtResource( 1 )
 centered = false
 
@@ -32,10 +29,15 @@ centered = false
 
 [node name="Control" type="Control" parent="."]
 margin_left = 65.0
-margin_top = 50.0
-margin_right = 997.0
-margin_bottom = 576.0
+margin_top = 16.0
+margin_right = 1109.0
+margin_bottom = 638.0
 mouse_filter = 2
+
+[node name="TopLabel" type="Label" parent="Control"]
+anchor_right = 1.0
+margin_bottom = 14.0
+align = 1
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 visible = false
@@ -50,6 +52,16 @@ anchor_bottom = 1.0
 margin_top = -14.0
 align = 1
 
+[node name="NextLevelBtn" type="Button" parent="Control"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -107.0
+margin_top = -20.0
+text = "Next Level"
+
 [node name="BoardLimits" type="Node2D" parent="."]
 
 [node name="TopLeft" type="Position2D" parent="BoardLimits"]
@@ -63,3 +75,5 @@ position = Vector2( 936, 477 )
 __meta__ = {
 "_gizmo_extents_": 100.0
 }
+
+[connection signal="pressed" from="Control/NextLevelBtn" to="." method="_on_NextLevelBtn_pressed"]

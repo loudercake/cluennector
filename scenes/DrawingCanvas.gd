@@ -28,10 +28,11 @@ func _draw():
 	draw_dashed_line(dash_start, dash_end, dash_color, dash_width, dash_length)
 	for clue in clues:
 		if clue.next:
-			var dir = (clue.next.initial_position - clue.initial_position).normalized()
-			var arrow_start = clue.initial_position + dir * clue.diagonal_size() / 2
-			var arrow_end  = clue.next.initial_position - dir * clue.next.diagonal_size() / 2
-			draw_arrow(arrow_start, arrow_end, arrow_color, arrow_width, arrow_head_width, arrow_head_length)
+			for next in clue.next:
+				var dir = (next.initial_position - clue.initial_position).normalized()
+				var arrow_start = clue.initial_position + dir * clue.diagonal_size() / 2
+				var arrow_end  = next.initial_position - dir * next.diagonal_size() / 2
+				draw_arrow(arrow_start, arrow_end, arrow_color, arrow_width, arrow_head_width, arrow_head_length)
 
 func _process(_delta):
 	update()
@@ -45,19 +46,19 @@ func draw_arrow(from, to, color, width, head_width, head_height, antialiased=tru
 	head.append_array([to, base + perp * head_width, base - perp * head_width])
 	draw_colored_polygon(head, color)
 
-func draw_dashed_line(from, to, color, width, dash_length = 5, cap_end = true, antialiased = true):
+func draw_dashed_line(from, to, color, width, p_dash_length = 5, cap_end = true, antialiased = true):
 	var length = (to - from).length()
 	var normal = (to - from).normalized()
-	var dash_step = normal * dash_length
+	var dash_step = normal * p_dash_length
 
-	if length < dash_length: #not long enough to dash
+	if length < p_dash_length: #not long enough to dash
 		draw_line(from, to, color, width, antialiased)
 		return
 
 	else:
 		var draw_flag = true
 		var segment_start = from
-		var steps = length/dash_length
+		var steps = length/p_dash_length
 		for _start_length in range(0, steps + 1):
 			var segment_end = segment_start + dash_step
 			if draw_flag:

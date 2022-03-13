@@ -1,12 +1,13 @@
 extends Node
 
 export(Resource) var start_level
-export(float) var clue_max_rotation = 20
-export(float) var clue_max_random_offset = 70
-export(float) var clue_max_random_scale = 0.5
-export(float) var clue_base_size = 5
-export(int) var n_rows = 2
 export(bool) var debug_mode = true
+
+var clue_max_rotation = 20
+var clue_max_random_offset = 70
+var clue_max_random_scale = 0.5
+var clue_base_size = 5
+var n_rows = 2
 
 var Clue = preload("res://scenes/Clue.tscn")
 
@@ -24,13 +25,26 @@ onready var board = $Board
 onready var clues = $Board/Clues
 onready var canvas = $Canvas
 onready var description_label = $Control/DescLabel
+onready var top_label = $Control/TopLabel
 onready var background = $Control/ColorRect
 onready var board_top_left = $BoardLimits/TopLeft
 onready var board_bottom_right = $BoardLimits/BottomRight
+onready var win_btn = $Control/NextLevelBtn
+
+
+func if_not_null_set():
+	var attributes = ["clue_max_rotation", "clue_max_random_offset", "clue_max_random_scale", "clue_base_size", "n_rows"]
+	for attr in attributes:
+		var value = start_level.get(attr)
+		if value:
+			set(attr, value)
 
 func _ready():
-	# top_left = board.global_position
-	# bottom_right = top_left + board.texture.get_size()
+	if Global.next_level:
+		start_level = Global.next_level
+		if_not_null_set()
+
+	top_label.text = start_level.title
 	top_left = board_top_left.global_position
 	bottom_right = board_bottom_right.global_position
 
@@ -120,7 +134,7 @@ func shuffle(list):
 	return shuffled_list
 
 func on_clue_mouse_entered(clue):
-	if not is_connecting or clue == start_clue or clue.next == start_clue:
+	if not is_connecting or clue == start_clue or start_clue in clue.next:
 		return
 	can_connect = true
 	clue.sprite.material.set_shader_param("color", clue.pressed_border_color)
@@ -139,7 +153,7 @@ func on_clue_unhover(_clue):
 	if not viewing_clue:
 		description_label.text = ""
 
-# Mouse release over clue
+# Mouse release over same clue
 func on_clue_click(clue):
 	if is_connecting:
 		can_connect = false
@@ -169,11 +183,46 @@ func on_drag_stopped(_clue):
 	canvas.clear_dash()
 
 	# Connect
-	if can_connect and end_clue and end_clue.next != start_clue:
-		start_clue.next = end_clue
+	if can_connect and end_clue and not start_clue in end_clue.next and end_clue.resource in start_clue.resource.next and check_chain_until(start_clue):
+		start_clue.next.append(end_clue)
 		canvas.add_clue(start_clue)
 	elif start_clue:
-		start_clue.next = null
+		pass
+		# start_clue.next = null
 	start_clue = null
 	end_clue = null
 	is_connecting = false
+
+	if check_chain_complete():
+		win_btn.visible = true
+		top_label.text = "You won!"
+
+
+## Warning, you can cause infinite recurssion if you have a clue that references itself or a clue that references a clue that references itself
+func check_chain_until(check_clue):
+	for clue in board_clues:
+		if check_clue.resource in clue.resource.next:
+			if not (check_clue in clue.next and check_chain_until(clue)):
+				return false
+	return true
+
+func check_chain_complete():
+	for clue in board_clues:
+		if not check_chain_until(clue):
+			return false
+	return true
+
+
+func _on_NextLevelBtn_pressed():
+	# TODO just load the next level of the start_level
+	# Global.next_level = start_level.next_level
+	# if not Global.next_level:
+	#    win_game()
+	var new_clue = start_level.story[-1].duplicate(true)
+	new_clue.description = str(len(start_level.story) + 1) + "th clue"
+	start_level.story[-1].next.append(new_clue)
+	start_level.story.append(new_clue)
+	start_level.n_rows = 2 + int(len(start_level.story) / 10)
+	start_level.clue_base_size /= 1.03
+	Global.next_level = start_level
+	get_tree().reload_current_scene()
