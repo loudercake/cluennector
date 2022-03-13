@@ -9,20 +9,6 @@
 script = ExtResource( 2 )
 start_level = ExtResource( 3 )
 
-[node name="Control" type="Control" parent="."]
-margin_left = 65.0
-margin_top = 50.0
-margin_right = 997.0
-margin_bottom = 576.0
-mouse_filter = 2
-
-[node name="DescLabel" type="Label" parent="Control"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -14.0
-align = 1
-
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2( 1, 0.96152 )
 anchor_mode = 0
@@ -40,3 +26,23 @@ centered = false
 script = ExtResource( 4 )
 
 [node name="Clues" type="Node2D" parent="Board"]
+
+[node name="Control" type="Control" parent="."]
+margin_left = 65.0
+margin_top = 50.0
+margin_right = 997.0
+margin_bottom = 576.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.396078 )
+
+[node name="DescLabel" type="Label" parent="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+align = 1

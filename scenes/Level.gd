@@ -11,10 +11,13 @@ var Clue = preload("res://scenes/Clue.tscn")
 
 var top_left = Vector2.ZERO
 var bottom_right = Vector2.ONE
+var viewing_clue = null
+var board_clues = []
 
 onready var board = $Board
 onready var clues = $Board/Clues
 onready var description_label = $Control/DescLabel
+onready var background = $Control/ColorRect
 
 func _ready():
 	top_left = board.global_position
@@ -30,6 +33,7 @@ func _ready():
 	var y_offset = height / n_rows
 	var i = 1
 	for clue_resource in clues_array:
+		# Create the clue
 		var clue = Clue.instance()
 		clue.resource = clue_resource
 		clue.size = Vector2.ONE * 5
@@ -37,9 +41,12 @@ func _ready():
 		clue.connect("hovered", self, "on_clue_hover")
 		clue.connect("unhovered", self, "on_clue_unhover")
 		clue.connect("clicked", self, "on_clue_click")
-		clues.add_child(clue)
 		last_pos.x += x_offset
 
+		# Add
+		clues.add_child(clue)
+
+		# Check grid
 		if i % n_cols == 0:
 			last_pos.x = top_left.x
 			last_pos.y += y_offset
@@ -50,8 +57,12 @@ func _ready():
 		clue.global_position.x += rndf() * clue_max_random_offset
 		clue.global_position.y -= rndf() * clue_max_random_offset
 		clue.scale = Vector2.ONE * (1 + rndf() * clue_max_random_scale)
+		board_clues.append(clue)
 
 	clues.scale = Vector2.ONE * 0.8
+
+	for clue in board_clues:
+		clue.init()
 
 
 func _process(_delta):
@@ -59,6 +70,13 @@ func _process(_delta):
 		if Input.is_action_just_pressed("reset"):
 			get_tree().reload_current_scene()
 
+	if Input.is_action_just_released("mouse_left_click") and viewing_clue:
+		viewing_clue.return_animation()
+		background.visible = false
+		viewing_clue = null
+		description_label.text = ""
+
+## Random float between -1 and 1
 func rndf():
 	randomize()
 	return (randf() - 0.5) * 2
@@ -75,10 +93,20 @@ func shuffle(list):
 	return shuffled_list
 
 func on_clue_hover(clue):
-	description_label.text = clue.description
+	if not viewing_clue:
+		description_label.text = clue.description
 
-func on_clue_unhover(clue):
-	description_label.text = ""
+func on_clue_unhover(_clue):
+	if not viewing_clue:
+		description_label.text = ""
 
 func on_clue_click(clue):
-	print("Click: ", clue)
+	if viewing_clue:
+		viewing_clue.return_animation()
+		return
+
+	var center = Vector2(512, 300)
+	description_label.text = clue.description
+	clue.click_animation(center, Vector2.ONE * 8, 2 * PI)
+	viewing_clue = clue
+	background.visible = true
