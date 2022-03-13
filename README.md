@@ -23,9 +23,13 @@ Press backspace to reset the level and see the clues be randomly placed (this is
 - [ ] Animation effect on filling the board with clues
 - [x] Fill board grid
 - [x] Randomize clues order
-- [ ] Draw canvas to connect clues (node connecting sorta system)
+- [x] Draw canvas to connect clues (node connecting sorta system)
 - [x] Approach to clue on hover, show description
 - [ ] Check connections validity
 - [ ] Win effect
 - [ ] Load next level on win
 - [ ] If there is no next level, game beat win congratulations credits yay animation.
+
+
+# BUGS
+- [ ] Something is wrong with the connections click handling (sometimes starts dashed line when it should just click)
