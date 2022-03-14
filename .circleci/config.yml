@@ -17,7 +17,7 @@ jobs:
       - run: godot --export HTML5 ./build/html/index.html
 #       - run: godot --export "Windows Desktop" ./build/windows/cluennector.exe
 #       - run: godot --export "Linux/X11" ./build/linux/cluennector
-#       - run: godot --export "Mac OSX" ./build/macos/cluennector.
+#       - run: godot --export "Mac OSX" ./build/macos/cluennector.dmg
       - run:
           name: Heroku deploy
           command: bash .circleci/deploy-heroku.sh
