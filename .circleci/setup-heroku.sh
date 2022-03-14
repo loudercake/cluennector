@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+apt update
 apt install curl
 apt install gnupg2
 wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
