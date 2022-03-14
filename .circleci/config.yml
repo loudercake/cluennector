@@ -1,12 +1,23 @@
-version: 3.4.2
+version: 0.0.1
+
 jobs:
   build:
     docker:
       - image: barichello/godot-ci
     steps:
       - checkout
+      - run:
+          name: Heroku setup
+          command: bash .circleci/setup-heroku.sh # run a script to set up Heroku
       - run: |
           mkdir -p ./build/html
-          # mkdir -p ./build/windows
-          # mkdir -p ./build/macos
+          mkdir -p ./build/windows
+          mkdir -p ./build/macos
+          mkdir -p ./build/linux
       - run: godot --export HTML5 ./build/html/index.html
+#       - run: godot --export "Windows Desktop" ./build/windows/cluennector.exe
+#       - run: godot --export "Linux/X11" ./build/linux/cluennector
+#       - run: godot --export "Mac OSX" ./build/macos/cluennector.
+      - run:
+          name: Heroku deploy
+          command: bash .circleci/deploy-heroku.sh
