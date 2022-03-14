@@ -225,15 +225,16 @@ func _on_NextLevelBtn_pressed():
 		else:
 			get_tree().reload_current_scene()
 		return
-	description_label.text = "loading next level... "
-	var new_clue = start_level.story[-1].duplicate(true)
-	new_clue.description = str(len(start_level.story) + 1) + "th clue"
-	start_level.story[-1].next.append(new_clue)
-	start_level.story.append(new_clue)
-	start_level.n_rows = 2 + int(len(start_level.story) / 10.0)
-	start_level.clue_base_size /= 1.03
-	Global.next_level = start_level
-	get_tree().reload_current_scene()
+
+	# description_label.text = "loading next level... "
+	# var new_clue = start_level.story[-1].duplicate(true)
+	# new_clue.description = str(len(start_level.story) + 1) + "th clue"
+	# start_level.story[-1].next.append(new_clue)
+	# start_level.story.append(new_clue)
+	# start_level.n_rows = 2 + int(len(start_level.story) / 10.0)
+	# start_level.clue_base_size /= 1.03
+	# Global.next_level = start_level
+	# get_tree().reload_current_scene()
 
 
 func win_level():
