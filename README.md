@@ -2,6 +2,8 @@
 
 Connect clues puzzle game.
 
+Live demo at: 
+
 # How to create levels
 
 (Forget about json, it's not meant to, the thing is custom resources)
