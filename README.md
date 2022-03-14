@@ -2,7 +2,7 @@
 
 Connect clues puzzle game.
 
-Live demo at: 
+Live demo at: https://cluennector.herokuapp.com/
 
 # How to create levels
 
