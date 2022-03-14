@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-apt update
-apt install curl
-apt install gnupg2
+apt-get update
+apt-get install -y curl gnupg2
 wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
 cat > ~/.netrc << EOF
