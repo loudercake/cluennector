@@ -2,7 +2,7 @@
 
 commit_hash=$(git rev-parse HEAD)
 cd build/html
-# heroku git:remote -a $HEROKU_APP_NAME
+heroku git:remote -a $HEROKU_APP_NAME
 echo "{}" > composer.json
 echo "<?php include_once(\"index.html\"); ?>" > index.php
 git add .
