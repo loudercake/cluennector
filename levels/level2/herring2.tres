@@ -1,11 +1,11 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
-[ext_resource path="res://levels/level1/murderer.png" type="Texture" id=2]
+[ext_resource path="res://levels/level2/photocopysception.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-description = "A mugshot of the only suspect."
+description = "A photocopy A photocopy of a photocopy of a paper. "
 texture = ExtResource( 2 )
 next = [  ]
-pos = Vector2( 800, 250 )
+pos = Vector2( 470, 260 )

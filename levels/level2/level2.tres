@@ -1,14 +1,17 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://scenes/LevelResource.gd" type="Script" id=1]
 [ext_resource path="res://levels/level2/clue1.tres" type="Resource" id=2]
 [ext_resource path="res://levels/level2/herring1.tres" type="Resource" id=3]
+[ext_resource path="res://levels/level2/clue2.tres" type="Resource" id=4]
+[ext_resource path="res://levels/level2/clue3.tres" type="Resource" id=5]
+[ext_resource path="res://levels/level2/herring2.tres" type="Resource" id=6]
 
 [resource]
 script = ExtResource( 1 )
 title = "a"
-story = [ ExtResource( 2 ) ]
-decoy = [ ExtResource( 3 ) ]
+story = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ]
+decoy = [ ExtResource( 3 ), ExtResource( 6 ) ]
 clue_max_rotation = 20.0
 clue_max_random_offset = 50.0
 clue_max_random_scale = 0.1
