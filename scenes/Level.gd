@@ -215,23 +215,12 @@ func check_chain_complete():
 
 
 func _on_NextLevelBtn_pressed():
-	# TODO just load the next level of the start_level (remove this if)
-	if OS.get_name() == "HTML5":
-		Global.next_level = start_level.next_level
-		if not Global.next_level:
-			win_game()
-		else:
-			get_tree().reload_current_scene()
-		return
-	description_label.text = "loading next level... "
-	var new_clue = start_level.story[-1].duplicate(true)
-	new_clue.description = str(len(start_level.story) + 1) + "th clue"
-	start_level.story[-1].next.append(new_clue)
-	start_level.story.append(new_clue)
-	start_level.n_rows = 2 + int(len(start_level.story) / 10.0)
-	start_level.clue_base_size /= 1.03
-	Global.next_level = start_level
-	get_tree().reload_current_scene()
+	Global.next_level = start_level.next_level
+	if not Global.next_level:
+		win_game()
+	else:
+		get_tree().reload_current_scene()
+	return
 
 
 func win_level():
