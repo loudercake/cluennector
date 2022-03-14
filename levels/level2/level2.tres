@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://scenes/LevelResource.gd" type="Script" id=1]
+[ext_resource path="res://levels/level2/clue1.tres" type="Resource" id=2]
+[ext_resource path="res://levels/level2/herring1.tres" type="Resource" id=3]
+
+[resource]
+script = ExtResource( 1 )
+title = "a"
+story = [ ExtResource( 2 ) ]
+decoy = [ ExtResource( 3 ) ]
+clue_max_rotation = 20.0
+clue_max_random_offset = 50.0
+clue_max_random_scale = 0.1
+clue_base_size = 4.0
+n_rows = 2

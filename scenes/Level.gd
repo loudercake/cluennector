@@ -85,9 +85,7 @@ func _ready():
 
 		# Randomize
 		clue.rotation =  rndf() * clue_max_rotation * PI / 180
-		clue.global_position.x += rndf() * clue_max_random_offset
-		clue.global_position.y -= rndf() * clue_max_random_offset
-		clue.scale = board.scale * (1 + rndf() * clue_max_random_scale)
+		clue.scale = board.scale * 1
 		board_clues.append(clue)
 
 	clues.scale = Vector2.ONE / board.scale

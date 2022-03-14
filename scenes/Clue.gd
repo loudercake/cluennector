@@ -44,6 +44,7 @@ signal right_clicked
 
 func _ready():
 	texture = resource.texture
+	position = resource.pos
 	description = resource.description
 	valid_next_list = resource.next
 	if not description:

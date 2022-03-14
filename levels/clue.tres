@@ -1,9 +1,13 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
-[ext_resource path="res://levels/level1/1.png" type="Texture" id=2]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/1.png-79c3c35abc37c5a41d1accbdb2ad8bcd.stex"
 
 [resource]
 script = ExtResource( 1 )
 description = "First clue"
-texture = ExtResource( 2 )
+texture = SubResource( 1 )
+next = [  ]
+pos = Vector2( 0, 0 )
