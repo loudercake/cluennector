@@ -225,6 +225,7 @@ func _on_NextLevelBtn_pressed():
 
 func win_level():
 	win_btn.visible = true
+	win_btn.grab_focus()
 	top_label.text = "You won!"
 	description_label.text = ""
 	for clue in board_clues:
