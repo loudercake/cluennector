@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/board.png-e85965e742429a2317ea878bbbe6fb80.stex"
+path="res://.import/bloodybladeofgrass.png-1afa277c17e15d70ef64718617e28be9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/board.png"
-dest_files=[ "res://.import/board.png-e85965e742429a2317ea878bbbe6fb80.stex" ]
+source_file="res://levels/level2/bloodybladeofgrass.png"
+dest_files=[ "res://.import/bloodybladeofgrass.png-1afa277c17e15d70ef64718617e28be9.stex" ]
 
 [params]
 

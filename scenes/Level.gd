@@ -85,9 +85,7 @@ func _ready():
 
 		# Randomize
 		clue.rotation =  rndf() * clue_max_rotation * PI / 180
-		clue.global_position.x += rndf() * clue_max_random_offset
-		clue.global_position.y -= rndf() * clue_max_random_offset
-		clue.scale = board.scale * (1 + rndf() * clue_max_random_scale)
+		clue.scale = board.scale * 1
 		board_clues.append(clue)
 
 	clues.scale = Vector2.ONE / board.scale
@@ -217,27 +215,17 @@ func check_chain_complete():
 
 
 func _on_NextLevelBtn_pressed():
-	# TODO just load the next level of the start_level (remove this if)
-	if OS.get_name() == "HTML5":
-		Global.next_level = start_level.next_level
-		if not Global.next_level:
-			win_game()
-		else:
-			get_tree().reload_current_scene()
-		return
-	description_label.text = "loading next level... "
-	var new_clue = start_level.story[-1].duplicate(true)
-	new_clue.description = str(len(start_level.story) + 1) + "th clue"
-	start_level.story[-1].next.append(new_clue)
-	start_level.story.append(new_clue)
-	start_level.n_rows = 2 + int(len(start_level.story) / 10.0)
-	start_level.clue_base_size /= 1.03
-	Global.next_level = start_level
-	get_tree().reload_current_scene()
+	Global.next_level = start_level.next_level
+	if not Global.next_level:
+		win_game()
+	else:
+		get_tree().reload_current_scene()
+	return
 
 
 func win_level():
 	win_btn.visible = true
+	win_btn.grab_focus()
 	top_label.text = "You won!"
 	description_label.text = ""
 	for clue in board_clues:

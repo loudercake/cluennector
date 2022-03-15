@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2.png-2be646522224c99ef7310c0724ba9bba.stex"
+path="res://.import/photocopysception.png-ccad176d21abcbeec251704b740a7acb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/level1/2.png"
-dest_files=[ "res://.import/2.png-2be646522224c99ef7310c0724ba9bba.stex" ]
+source_file="res://levels/level2/photocopysception.png"
+dest_files=[ "res://.import/photocopysception.png-ccad176d21abcbeec251704b740a7acb.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

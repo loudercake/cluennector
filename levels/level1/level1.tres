@@ -1,16 +1,16 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://scenes/LevelResource.gd" type="Script" id=1]
-[ext_resource path="res://levels/level1/clue3.tres" type="Resource" id=2]
+[ext_resource path="res://levels/level2/level2.tres" type="Resource" id=2]
 [ext_resource path="res://levels/level1/clue2.tres" type="Resource" id=3]
-[ext_resource path="res://levels/level1/clue4.tres" type="Resource" id=4]
 [ext_resource path="res://levels/level1/clue1.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 1 )
 title = "A new level"
-story = [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]
+story = [ ExtResource( 5 ), ExtResource( 3 ) ]
 decoy = [  ]
+next_level = ExtResource( 2 )
 clue_max_rotation = 0.0
 clue_max_random_offset = 0.0
 clue_max_random_scale = 0.0
