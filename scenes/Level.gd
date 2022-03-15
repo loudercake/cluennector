@@ -1,5 +1,7 @@
 extends Node
 
+const HttpHelper = preload("HttpHelper.gd")
+
 export(Resource) var start_level
 export(bool) var debug_mode = true
 
@@ -30,6 +32,17 @@ onready var background = $Control/ColorRect
 onready var board_top_left = $BoardLimits/TopLeft
 onready var board_bottom_right = $BoardLimits/BottomRight
 onready var win_btn = $Control/NextLevelBtn
+onready var http = HttpHelper.new(self)
+
+
+func debug(string):
+	print(string)
+
+# Display the image in a TextureRect node.
+func debug_img(texture):
+	var texture_rect = TextureRect.new()
+	add_child(texture_rect)
+	texture_rect.texture = texture
 
 
 func if_not_null_set():
@@ -40,6 +53,10 @@ func if_not_null_set():
 			set(attr, value)
 
 func _ready():
+	http.json_get_request("http://www.mocky.io/v2/5185415ba171ea3a00704eed", ["user-agent: YourCustomUserAgent"], "debug")
+	http.json_post_request("https://httpbin.org/post", [], {"name": "Godette"}, "debug")
+	http.image_get_request("https://via.placeholder.com/512", [], "debug_img")
+
 	if Global.next_level:
 		start_level = Global.next_level
 		if_not_null_set()
