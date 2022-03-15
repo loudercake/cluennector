@@ -4,7 +4,7 @@ export var hover_border_color = Color(0.95, 0.1, 0, 1)
 export var pressed_border_color = Color(0, 0.1, 0.95, 1)
 
 const hover_scale = 1.3
-const modulate_scale = 1.2
+const modulate_scale = Color(1.3, 1.3, 1.3, 1)
 const border_width = 2.5
 const transition_time = 0.5
 
