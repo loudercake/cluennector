@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
+[ext_resource path="res://levels/level3/suspect1.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+description = "A suspect, owner of the Generic Brand Pictures Model 7"
+texture = ExtResource( 2 )
+next = [  ]
+pos = Vector2( 725, 250 )
