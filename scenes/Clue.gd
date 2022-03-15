@@ -99,8 +99,9 @@ func _process(_delta):
 		emit_signal("right_clicked", self)
 
 func click_animation(to_position: Vector2, to_scale: Vector2, to_rotation: float):
-	z_index = 1000
 	viewing = true
+	is_hovered = false
+	z_index = 1000
 	if has_drag_stared:
 		emit_signal("drag_stopped", self)
 
@@ -120,6 +121,10 @@ func click_animation(to_position: Vector2, to_scale: Vector2, to_rotation: float
 	tween.interpolate_property(sprite.get_material(), "shader_param/border_width",
 			sprite.material.get_shader_param("border_width"), 0.0, 0.15,
 			hover_tween.TRANS_LINEAR, hover_tween.EASE_IN_OUT)
+
+	if tween.is_connected("tween_all_completed", self, "_on_Tween_tween_all_completed"):
+		tween.disconnect("tween_all_completed", self, "_on_Tween_tween_all_completed")
+	tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed", [true])
 	tween.start()
 
 func return_animation():
@@ -133,7 +138,9 @@ func return_animation():
 	tween.interpolate_property(self, "rotation",
 			rotation, initial_rotation, transition_time,
 			tween.TRANS_LINEAR, tween.EASE_IN_OUT)
-	tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed")
+	if tween.is_connected("tween_all_completed", self, "_on_Tween_tween_all_completed"):
+		tween.disconnect("tween_all_completed", self, "_on_Tween_tween_all_completed")
+	tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed", [false])
 	tween.start()
 
 func hover_animation():
@@ -141,6 +148,7 @@ func hover_animation():
 		return
 	hover_tween.stop_all()
 	if is_hovered:
+		z_index = 10
 		hover_tween.interpolate_property(self, "scale",
 				scale, initial_scale * hover_scale, 0.1,
 				hover_tween.TRANS_LINEAR, hover_tween.EASE_IN_OUT)
@@ -151,6 +159,7 @@ func hover_animation():
 				sprite.material.get_shader_param("border_width"), border_width, 0.1,
 				hover_tween.TRANS_LINEAR, hover_tween.EASE_IN_OUT)
 	else:
+		z_index = 0
 		hover_tween.interpolate_property(self, "scale",
 				scale, initial_scale, 0.5,
 				hover_tween.TRANS_LINEAR, hover_tween.EASE_IN_OUT)
@@ -187,13 +196,17 @@ func _on_Timer_timeout():
 		emit_signal("hovered", self)
 		# Ensure because this scale hover_tween is not perfect
 		scale = initial_scale * hover_scale
-		modulate =  initial_modulate * hover_scale
+		modulate =  initial_modulate * modulate_scale
 		sprite.material.set_shader_param("border_width", border_width)
 
 
-func _on_Tween_tween_all_completed():
+func _on_Tween_tween_all_completed(is_showing=false):
 	if tween.is_connected("tween_all_completed", self, "_on_Tween_tween_all_completed"):
 		tween.disconnect("tween_all_completed", self, "_on_Tween_tween_all_completed")
-	viewing = false
-	is_hovered = false
-	z_index = 0
+	if is_showing:
+		modulate = initial_modulate
+		sprite.material.set_shader_param("border_width", 0.0)
+	else:
+		viewing = false
+		is_hovered = false
+		z_index = 0
