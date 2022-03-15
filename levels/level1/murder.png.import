@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1.png-79c3c35abc37c5a41d1accbdb2ad8bcd.stex"
+path="res://.import/murder.png-1a85be548335ed620163c59173c31aee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/level1/1.png"
-dest_files=[ "res://.import/1.png-79c3c35abc37c5a41d1accbdb2ad8bcd.stex" ]
+source_file="res://levels/level1/murder.png"
+dest_files=[ "res://.import/murder.png-1a85be548335ed620163c59173c31aee.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
