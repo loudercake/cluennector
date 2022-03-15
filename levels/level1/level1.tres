@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource( 1 )
-title = "A new level"
+title = "Babby's first crime"
 story = [ ExtResource( 5 ), ExtResource( 3 ) ]
 decoy = [  ]
 next_level = ExtResource( 2 )

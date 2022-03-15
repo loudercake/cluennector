@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource( 1 )
-description = "A photocopy A photocopy of a photocopy of a paper. "
+description = "A photocopy of a photocopy of a paper. "
 texture = ExtResource( 2 )
 next = [  ]
-pos = Vector2( 470, 260 )
+pos = Vector2( 400, 260 )

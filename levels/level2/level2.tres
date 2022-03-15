@@ -9,7 +9,7 @@
 
 [resource]
 script = ExtResource( 1 )
-title = "a"
+title = "Babby's first crime"
 story = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ]
 decoy = [ ExtResource( 3 ), ExtResource( 6 ) ]
 clue_max_rotation = 20.0
