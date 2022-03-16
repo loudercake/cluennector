@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scenes/LevelResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+title = "Connect the biggest country to its neighbours"
+story = [  ]
+decoy = [  ]
+clue_max_rotation = 10.0
+clue_max_random_offset = 10.0
+clue_max_random_scale = 0.0
+clue_base_size = 8.0
+n_rows = 2

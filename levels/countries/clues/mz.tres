@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
+
+[ext_resource path="res://levels/countries/images/mz.png" type="Texture" id=2]
+
+[ext_resource path="res://levels/countries/clues/mw.tres" type="Resource" id=3]
+
+[ext_resource path="res://levels/countries/clues/sz.tres" type="Resource" id=4]
+
+[ext_resource path="res://levels/countries/clues/zm.tres" type="Resource" id=5]
+
+[ext_resource path="res://levels/countries/clues/zw.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+description = "Mozambique"
+texture = ExtResource( 2 )
+next = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+pos = Vector2( -1, -1 )

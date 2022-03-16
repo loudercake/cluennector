@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
+
+[ext_resource path="res://levels/countries/images/me.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+description = "Montenegro"
+texture = ExtResource( 2 )
+next = [ ExtResource( 3 ) ]
+pos = Vector2( -1, -1 )

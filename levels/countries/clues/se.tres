@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
+
+[ext_resource path="res://levels/countries/images/se.png" type="Texture" id=2]
+
+[ext_resource path="res://levels/countries/clues/fi.tres" type="Resource" id=3]
+
+[ext_resource path="res://levels/countries/clues/no.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+description = "Sweden"
+texture = ExtResource( 2 )
+next = [ ExtResource( 3 ), ExtResource( 4 ) ]
+pos = Vector2( -1, -1 )

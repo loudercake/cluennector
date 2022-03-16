@@ -7,7 +7,7 @@ wget https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_a
 tar -xvzf ghr_*.tar.gz
 mv ghr_*_amd64 ghr
 
-zip linuz.zip linux/*
+zip linux.zip linux/*
 zip macos.zip macos/*
 zip windows.zip windows/*
 mv *.zip release/

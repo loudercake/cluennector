@@ -34,10 +34,29 @@ margin_right = 1109.0
 margin_bottom = 638.0
 mouse_filter = 2
 
+[node name="MenuButton" type="Button" parent="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -12.0
+margin_top = -55.0
+margin_right = 85.0
+margin_bottom = -29.0
+text = "Main Menu"
+
 [node name="TopLabel" type="Label" parent="Control"]
 anchor_right = 1.0
+margin_right = -131.0
 margin_bottom = 14.0
 align = 1
+
+[node name="Button" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -101.0
+margin_top = -3.0
+margin_right = -20.0
+margin_bottom = 25.0
+text = "RESET"
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 visible = false
@@ -71,9 +90,11 @@ __meta__ = {
 }
 
 [node name="BottomRight" type="Position2D" parent="BoardLimits"]
-position = Vector2( 936, 477 )
+position = Vector2( 1068, 536 )
 __meta__ = {
 "_gizmo_extents_": 100.0
 }
 
+[connection signal="pressed" from="Control/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="pressed" from="Control/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Control/NextLevelBtn" to="." method="_on_NextLevelBtn_pressed"]

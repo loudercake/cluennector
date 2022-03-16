@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
+
+[ext_resource path="res://levels/countries/images/co.png" type="Texture" id=2]
+
+[ext_resource path="res://levels/countries/clues/ec.tres" type="Resource" id=3]
+
+[ext_resource path="res://levels/countries/clues/pa.tres" type="Resource" id=4]
+
+[ext_resource path="res://levels/countries/clues/ve.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+description = "Colombia"
+texture = ExtResource( 2 )
+next = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+pos = Vector2( -1, -1 )

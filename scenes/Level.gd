@@ -32,7 +32,9 @@ onready var background = $Control/ColorRect
 onready var board_top_left = $BoardLimits/TopLeft
 onready var board_bottom_right = $BoardLimits/BottomRight
 onready var win_btn = $Control/NextLevelBtn
-onready var http = HttpHelper.new(self)
+
+# Not used yet
+# onready var http = HttpHelper.new(self)
 
 
 func debug(string):
@@ -49,17 +51,18 @@ func if_not_null_set():
 	var attributes = ["clue_max_rotation", "clue_max_random_offset", "clue_max_random_scale", "clue_base_size", "n_rows"]
 	for attr in attributes:
 		var value = start_level.get(attr)
-		if value:
+		if value != null:
+			print("setting: ", attr, "=", value)
 			set(attr, value)
 
 func _ready():
-	http.json_get_request("http://www.mocky.io/v2/5185415ba171ea3a00704eed", ["user-agent: YourCustomUserAgent"], "debug")
-	http.json_post_request("https://httpbin.org/post", [], {"name": "Godette"}, "debug")
-	http.image_get_request("https://via.placeholder.com/512", [], "debug_img")
+	# This is so children classes can overwrite the ready function doing stuff before it
+	_on_ready()
 
+func _on_ready():
+	if_not_null_set()
 	if Global.next_level:
 		start_level = Global.next_level
-		if_not_null_set()
 
 	top_label.text = start_level.title
 	top_left = board_top_left.global_position
@@ -70,8 +73,8 @@ func _ready():
 
 	# Programatically add clues to the board
 	var clues_array = shuffle(start_level.story + start_level.decoy)
-	var last_pos = top_left
 	var n_cols = int(clues_array.size() / float(n_rows) + 0.5)
+	var last_pos = top_left
 	var x_offset = width / n_cols
 	var y_offset = height / n_rows
 	var i = 1
@@ -80,8 +83,15 @@ func _ready():
 		var clue = Clue.instance()
 		clue.resource = clue_resource
 		clue.size = Vector2.ONE * clue_base_size
+
+		# Add
+		clues.add_child(clue)
 		clue.position = Vector2.ZERO
-		clue.global_position = last_pos
+		if clue.resource.pos == Vector2(-1, -1):
+			clue.position = last_pos
+		else:
+			clue.position = clue.resource.pos
+
 		clue.connect("hovered", self, "on_clue_hover")
 		clue.connect("mouse_entered", self, "on_clue_mouse_entered")
 		clue.connect("unhovered", self, "on_clue_unhover")
@@ -91,9 +101,6 @@ func _ready():
 		clue.connect("right_clicked", self, "on_clue_right_click")
 		last_pos.x += x_offset
 
-		# Add
-		clues.add_child(clue)
-
 		# Check grid
 		if i % n_cols == 0:
 			last_pos.x = top_left.x
@@ -102,7 +109,9 @@ func _ready():
 
 		# Randomize
 		clue.rotation =  rndf() * clue_max_rotation * PI / 180
-		clue.scale = board.scale * 1
+		clue.global_position.x += rndf() * clue_max_random_offset
+		clue.global_position.y -= rndf() * clue_max_random_offset
+		clue.scale = board.scale * (1 + rndf() * clue_max_random_scale)
 		board_clues.append(clue)
 
 	clues.scale = Vector2.ONE / board.scale
@@ -256,3 +265,12 @@ func win_level():
 
 func win_game():
 	top_label.text = "You won the game!"
+	win_btn.visible = false
+
+
+func _on_MenuButton_pressed():
+	get_tree().change_scene("res://scenes/MainMenu.tscn")
+
+
+func _on_Button_pressed():
+	get_tree().reload_current_scene()

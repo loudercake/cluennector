@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=12 format=2]
+
+[ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
+
+[ext_resource path="res://levels/countries/images/dz.png" type="Texture" id=2]
+
+[ext_resource path="res://levels/countries/clues/tn.tres" type="Resource" id=3]
+
+[ext_resource path="res://levels/countries/clues/ly.tres" type="Resource" id=4]
+
+[ext_resource path="res://levels/countries/clues/ne.tres" type="Resource" id=5]
+
+[ext_resource path="res://levels/countries/clues/eh.tres" type="Resource" id=6]
+
+[ext_resource path="res://levels/countries/clues/mr.tres" type="Resource" id=7]
+
+[ext_resource path="res://levels/countries/clues/ml.tres" type="Resource" id=8]
+
+[ext_resource path="res://levels/countries/clues/ma.tres" type="Resource" id=9]
+
+[resource]
+script = ExtResource( 1 )
+description = "Algeria"
+texture = ExtResource( 2 )
+next = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
+pos = Vector2( -1, -1 )

@@ -21,6 +21,8 @@ Press backspace to reset the level and see the clues be randomly placed (this is
 
 - [ ] Music
 - [ ] Sound effects
+- [ ] Fonts
+- [ ] Better buttons, ui's, etc
 - [ ] Main menu
 - [ ] Animation effect on filling the board with clues
 - [x] Fill board grid

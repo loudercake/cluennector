@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
+
+[ext_resource path="res://levels/countries/images/al.png" type="Texture" id=2]
+
+[ext_resource path="res://levels/countries/clues/me.tres" type="Resource" id=3]
+
+[ext_resource path="res://levels/countries/clues/mk.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+description = "Albania"
+texture = ExtResource( 2 )
+next = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+pos = Vector2( -1, -1 )

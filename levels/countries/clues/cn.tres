@@ -1,0 +1,42 @@
+[gd_resource type="Resource" load_steps=20 format=2]
+
+[ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
+
+[ext_resource path="res://levels/countries/images/cn.png" type="Texture" id=2]
+
+[ext_resource path="res://levels/countries/clues/af.tres" type="Resource" id=3]
+
+[ext_resource path="res://levels/countries/clues/bt.tres" type="Resource" id=4]
+
+[ext_resource path="res://levels/countries/clues/mm.tres" type="Resource" id=5]
+
+[ext_resource path="res://levels/countries/clues/hk.tres" type="Resource" id=6]
+
+[ext_resource path="res://levels/countries/clues/in.tres" type="Resource" id=7]
+
+[ext_resource path="res://levels/countries/clues/kz.tres" type="Resource" id=8]
+
+[ext_resource path="res://levels/countries/clues/np.tres" type="Resource" id=9]
+
+[ext_resource path="res://levels/countries/clues/kp.tres" type="Resource" id=10]
+
+[ext_resource path="res://levels/countries/clues/kg.tres" type="Resource" id=11]
+
+[ext_resource path="res://levels/countries/clues/la.tres" type="Resource" id=12]
+
+[ext_resource path="res://levels/countries/clues/mo.tres" type="Resource" id=13]
+
+[ext_resource path="res://levels/countries/clues/mn.tres" type="Resource" id=14]
+
+[ext_resource path="res://levels/countries/clues/pk.tres" type="Resource" id=15]
+
+[ext_resource path="res://levels/countries/clues/tj.tres" type="Resource" id=16]
+
+[ext_resource path="res://levels/countries/clues/vn.tres" type="Resource" id=17]
+
+[resource]
+script = ExtResource( 1 )
+description = "China"
+texture = ExtResource( 2 )
+next = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ]
+pos = Vector2( -1, -1 )
