@@ -1,15 +1,10 @@
-[gd_resource type="Resource" load_steps=9 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
-
 [ext_resource path="res://levels/countries/images/ar.png" type="Texture" id=2]
-
 [ext_resource path="res://levels/countries/clues/bo.tres" type="Resource" id=3]
-
 [ext_resource path="res://levels/countries/clues/cl.tres" type="Resource" id=4]
-
 [ext_resource path="res://levels/countries/clues/py.tres" type="Resource" id=5]
-
 [ext_resource path="res://levels/countries/clues/uy.tres" type="Resource" id=6]
 
 [resource]

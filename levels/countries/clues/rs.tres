@@ -1,20 +1,15 @@
-[gd_resource type="Resource" load_steps=9 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
-
 [ext_resource path="res://levels/countries/images/rs.png" type="Texture" id=2]
-
 [ext_resource path="res://levels/countries/clues/ba.tres" type="Resource" id=3]
-
 [ext_resource path="res://levels/countries/clues/hr.tres" type="Resource" id=4]
-
 [ext_resource path="res://levels/countries/clues/mk.tres" type="Resource" id=5]
-
 [ext_resource path="res://levels/countries/clues/me.tres" type="Resource" id=6]
 
 [resource]
 script = ExtResource( 1 )
 description = "Serbia"
 texture = ExtResource( 2 )
-next = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
+next = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 pos = Vector2( -1, -1 )

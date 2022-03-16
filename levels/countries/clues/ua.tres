@@ -1,19 +1,12 @@
-[gd_resource type="Resource" load_steps=11 format=2]
+[gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
-
 [ext_resource path="res://levels/countries/images/ua.png" type="Texture" id=2]
-
 [ext_resource path="res://levels/countries/clues/by.tres" type="Resource" id=3]
-
 [ext_resource path="res://levels/countries/clues/hu.tres" type="Resource" id=4]
-
 [ext_resource path="res://levels/countries/clues/md.tres" type="Resource" id=5]
-
 [ext_resource path="res://levels/countries/clues/pl.tres" type="Resource" id=6]
-
 [ext_resource path="res://levels/countries/clues/ro.tres" type="Resource" id=7]
-
 [ext_resource path="res://levels/countries/clues/sk.tres" type="Resource" id=8]
 
 [resource]
