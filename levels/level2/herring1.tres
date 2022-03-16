@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 description = "A drawing from a coworker's daughter."
 texture = ExtResource( 2 )
 next = [  ]
-pos = Vector2( 400, 200 )
+pos = Vector2( 199, 200 )

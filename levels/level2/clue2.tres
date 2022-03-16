@@ -1,11 +1,12 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
+[ext_resource path="res://levels/level2/clue1.tres" type="Resource" id=2]
 [ext_resource path="res://levels/level2/bloodybladeofgrass.png" type="Texture" id=3]
 
 [resource]
 script = ExtResource( 1 )
 description = "A bloodstained blade of grass found in the crime scene."
 texture = ExtResource( 3 )
-next = [  ]
-pos = Vector2( 317, 300 )
+next = [ ExtResource( 2 ) ]
+pos = Vector2( 258, 347 )
