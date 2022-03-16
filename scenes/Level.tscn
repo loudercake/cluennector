@@ -1,15 +1,33 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/board.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Level.gd" type="Script" id=2]
 [ext_resource path="res://levels/level1/level1.tres" type="Resource" id=3]
 [ext_resource path="res://scenes/DrawingCanvas.gd" type="Script" id=4]
+[ext_resource path="res://shaders/confetti.shader" type="Shader" id=5]
 
 [sub_resource type="InputEventAction" id=1]
 action = "menu"
 
 [sub_resource type="ShortCut" id=2]
 shortcut = SubResource( 1 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.0970464, 0.204641, 0.299578, 0.415612, 0.620253, 0.78481, 0.898734, 1 )
+colors = PoolColorArray( 1, 0.275392, 0, 1, 0, 0.953674, 0.976562, 1, 0.335938, 1, 0, 1, 1, 0, 0.960938, 1, 1, 0, 0.28125, 1, 0.03125, 0, 1, 1, 0.922095, 1, 0.00281709, 1, 0.765317, 0.0309861, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 5 )
+shader_param/gravity = Vector3( 0, 9.8, 0 )
+shader_param/initial_velocity = Vector3( 0, 30, 0 )
+shader_param/initial_velocity_scale = 1.0
+shader_param/initial_velocity_randomness = 1.0
+shader_param/drag = 3.5
+shader_param/scatter = 2.0
+shader_param/random_colors = SubResource( 5 )
 
 [node name="Level" type="Node"]
 script = ExtResource( 2 )
@@ -59,7 +77,7 @@ margin_right = -189.0
 margin_bottom = 14.0
 align = 1
 
-[node name="Button" type="Button" parent="UI/Control"]
+[node name="ResetButton" type="Button" parent="UI/Control"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -101.0
@@ -114,7 +132,34 @@ __meta__ = {
 "_gizmo_extents_": 100.0
 }
 
+[node name="Win" type="Node2D" parent="."]
+
+[node name="Tween" type="Tween" parent="Win"]
+
+[node name="Timer" type="Timer" parent="Win"]
+wait_time = 4.0
+one_shot = true
+
+[node name="Particles2D" type="Particles2D" parent="Win"]
+position = Vector2( 729, -24 )
+scale = Vector2( 7, 7 )
+z_index = 1000
+emitting = false
+amount = 5000
+lifetime = 10.0
+process_material = SubResource( 3 )
+
+[node name="Particles2D2" type="Particles2D" parent="Win"]
+position = Vector2( 310, -21 )
+scale = Vector2( -7, 7 )
+z_index = 1000
+emitting = false
+amount = 5000
+lifetime = 10.0
+process_material = SubResource( 3 )
+
 [connection signal="pressed" from="UI/Control/MenuButton" to="." method="_on_MenuButton_pressed"]
-[connection signal="pressed" from="UI/Control/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="UI/Control/ResetButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="UI/Control/HelpBtn" to="." method="_on_HelpBtn_pressed"]
 [connection signal="pressed" from="UI/Control/NextLevelBtn" to="." method="_on_NextLevelBtn_pressed"]
+[connection signal="timeout" from="Win/Timer" to="." method="_on_Win_Timer_timeout"]

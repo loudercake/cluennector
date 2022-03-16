@@ -30,9 +30,9 @@ Press backspace to reset the level and see the clues be randomly placed (this is
 - [x] Draw canvas to connect clues (node connecting sorta system)
 - [x] Approach to clue on hover, show description
 - [x] Check connections validity
-- [ ] Win effect
+- [x] Win effect
 - [x] Load next level on win
-- [ ] If there is no next level, game beat win congratulations credits yay animation.
+- [x] If there is no next level, game beat win congratulations credits yay animation.
 
 
 # BUGS

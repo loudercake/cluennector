@@ -33,6 +33,10 @@ onready var background = $UI/Control/ColorRect
 onready var board_top_left = $BoardLimits/TopLeft
 onready var board_bottom_right = $BoardLimits/BottomRight
 onready var win_btn = $UI/Control/NextLevelBtn
+onready var confetti = [$Win/Particles2D, $Win/Particles2D2]
+onready var confetti_timer = $Win/Timer
+onready var confetti_tween = $Win/Tween
+onready var resetbtn = $UI/Control/ResetButton
 
 # Not used yet
 # onready var http = HttpHelper.new(self)
@@ -302,10 +306,21 @@ func win_level():
 		clue.disconnect("drag_stopped", self, "on_drag_stopped")
 		clue.disconnect("right_clicked", self, "on_clue_right_click")
 
+	confetti_timer.start()
+	confetti_tween.stop_all()
+	for particles in confetti:
+		confetti_tween.interpolate_property(particles.process_material, "shader_param/initial_velocity",
+		Vector3(0, 30, 0), Vector3(0, 3, 0), 0.5, confetti_tween.TRANS_QUART, confetti_tween.EASE_IN_OUT, 0.1)
+		confetti_tween.start()
+		particles.emitting = true
+
 func win_game():
 	top_label.text = "You won the game!"
+	resetbtn.text = "Play again"	
+	confetti_timer.disconnect("timeout", self, "_on_Win_Timer_timeout")
 	win_btn.visible = false
-
+	for particles in confetti:
+		particles.emitting = true
 
 func _on_MenuButton_pressed():
 	get_tree().change_scene("res://scenes/MainMenu.tscn")
@@ -316,4 +331,10 @@ func _on_Button_pressed():
 
 func _on_HelpBtn_pressed():
 	check_chain_complete()
-	description_label.text = help_hint
+	if help_hint != null:
+		description_label.text = help_hint
+
+
+func _on_Win_Timer_timeout():
+	for particles in confetti:
+		particles.emitting = false
