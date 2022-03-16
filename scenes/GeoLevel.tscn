@@ -8,5 +8,24 @@
 script = ExtResource( 2 )
 start_level = ExtResource( 3 )
 
+[node name="TopLabel" parent="UI/Control" index="1"]
+margin_right = -261.0
+
+[node name="HelpBtn" parent="UI/Control" index="3"]
+margin_left = -261.0
+margin_right = -180.0
+
+[node name="LineEdit" type="LineEdit" parent="UI/Control" index="7"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -173.0
+margin_top = -8.0
+margin_right = -109.0
+margin_bottom = 16.0
+max_length = 2
+
+[node name="TopLeft" parent="BoardLimits" index="0"]
+position = Vector2( -61, -2 )
+
 [node name="BottomRight" parent="BoardLimits" index="1"]
 position = Vector2( 1063, 537 )

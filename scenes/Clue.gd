@@ -3,10 +3,10 @@ extends Node2D
 export var hover_border_color = Color(0.95, 0.1, 0, 1)
 export var pressed_border_color = Color(0, 0.1, 0.95, 1)
 
-const hover_scale = 1.3
-const modulate_scale = Color(1.3, 1.3, 1.3, 1)
-const border_width = 2.5
-const transition_time = 0.5
+var hover_scale = 1.3
+var modulate_scale = Color(1.3, 1.3, 1.3, 1)
+var border_width = 2.5
+var transition_time = 0.5
 
 var viewing = false
 var is_hovered: bool = false

@@ -17,5 +17,5 @@ next_level = ExtResource( 7 )
 clue_max_rotation = 20.0
 clue_max_random_offset = 0.0
 clue_max_random_scale = 0.0
-clue_base_size = 5.0
+clue_base_size = 6.0
 n_rows = 2

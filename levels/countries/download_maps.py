@@ -31,5 +31,5 @@ for iso in tqdm(countries):
     url = f"https://raw.githubusercontent.com/djaiss/mapsicon/master/all/{iso.lower()}/vector.svg"
     filename = f"./maps/{iso.lower()}"
     if download(url, filename + ".svg"):
-        subprocess.check_call(f"convert -fuzz 50% -fill 'rgba(255, 64, 64, 128)' -opaque 'rgb(0, 0, 0)' -background none {filename}.svg {filename}.png", shell=True)
-        Path(filename + ".svg").unlink()
+        subprocess.check_call(f"convert -fuzz 50% -fill 'rgb(64, 255, 64)' -opaque 'rgb(0, 0, 0)' -background none {filename}.svg {filename}_map.png", shell=True)
+        subprocess.check_call(f"convert {filename}_map.png -alpha on -channel a -evaluate multiply 0.75 +channel {filename}.png", shell=True)

@@ -8,6 +8,7 @@ onready var histbtn = $VBoxContainer/HistoryBtn
 
 func _ready():
 	gamebtn.grab_focus()
+	Global.next_level = null
 
 func _on_GameBtn_pressed():
 	get_tree().change_scene("res://scenes/Level.tscn")

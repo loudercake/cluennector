@@ -13,4 +13,5 @@ def clear_dir(dir):
     rmtree(dir, ignore_errors=True)
     Path(dir).mkdir(exist_ok=True)
 
-print([p.stem for p in Path("./images/").glob("*.png")])
+if __name__ == '__main__':
+    print([p.stem for p in Path("./images/").glob("*.png")])

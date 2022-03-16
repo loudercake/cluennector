@@ -1,11 +1,8 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
-
 [ext_resource path="res://levels/countries/images/az.png" type="Texture" id=2]
-
 [ext_resource path="res://levels/countries/clues/am.tres" type="Resource" id=3]
-
 [ext_resource path="res://levels/countries/clues/ge.tres" type="Resource" id=4]
 
 [resource]

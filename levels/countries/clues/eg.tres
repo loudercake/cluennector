@@ -10,5 +10,5 @@
 script = ExtResource( 1 )
 description = "Egypt"
 texture = ExtResource( 2 )
-next = [ ExtResource( 3 ), ExtResource( 4 ) ]
+next = [ ExtResource( 3 ) ]
 pos = Vector2( -1, -1 )

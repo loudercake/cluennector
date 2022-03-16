@@ -1,35 +1,20 @@
-[gd_resource type="Resource" load_steps=19 format=2]
+[gd_resource type="Resource" load_steps=17 format=2]
 
 [ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
-
 [ext_resource path="res://levels/countries/images/ru.png" type="Texture" id=2]
-
 [ext_resource path="res://levels/countries/clues/az.tres" type="Resource" id=3]
-
 [ext_resource path="res://levels/countries/clues/by.tres" type="Resource" id=4]
-
 [ext_resource path="res://levels/countries/clues/cn.tres" type="Resource" id=5]
-
 [ext_resource path="res://levels/countries/clues/ee.tres" type="Resource" id=6]
-
 [ext_resource path="res://levels/countries/clues/fi.tres" type="Resource" id=7]
-
 [ext_resource path="res://levels/countries/clues/ge.tres" type="Resource" id=8]
-
 [ext_resource path="res://levels/countries/clues/kz.tres" type="Resource" id=9]
-
 [ext_resource path="res://levels/countries/clues/kp.tres" type="Resource" id=10]
-
 [ext_resource path="res://levels/countries/clues/lv.tres" type="Resource" id=11]
-
 [ext_resource path="res://levels/countries/clues/lt.tres" type="Resource" id=12]
-
 [ext_resource path="res://levels/countries/clues/mn.tres" type="Resource" id=13]
-
 [ext_resource path="res://levels/countries/clues/no.tres" type="Resource" id=14]
-
 [ext_resource path="res://levels/countries/clues/pl.tres" type="Resource" id=15]
-
 [ext_resource path="res://levels/countries/clues/ua.tres" type="Resource" id=16]
 
 [resource]

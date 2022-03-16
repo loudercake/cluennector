@@ -22,16 +22,21 @@ var can_connect = false
 var start_clue = null
 var end_clue = null
 var clue_view_scale = 40
+var help_hint = null
 
 onready var board = $Board
 onready var clues = $Board/Clues
 onready var canvas = $Canvas
-onready var description_label = $Control/DescLabel
-onready var top_label = $Control/TopLabel
-onready var background = $Control/ColorRect
+onready var description_label = $UI/Control/DescLabel
+onready var top_label = $UI/Control/TopLabel
+onready var background = $UI/Control/ColorRect
 onready var board_top_left = $BoardLimits/TopLeft
 onready var board_bottom_right = $BoardLimits/BottomRight
-onready var win_btn = $Control/NextLevelBtn
+onready var win_btn = $UI/Control/NextLevelBtn
+onready var confetti = [$Win/Particles2D, $Win/Particles2D2]
+onready var confetti_timer = $Win/Timer
+onready var confetti_tween = $Win/Tween
+onready var resetbtn = $UI/Control/ResetButton
 
 # Not used yet
 # onready var http = HttpHelper.new(self)
@@ -52,18 +57,22 @@ func if_not_null_set():
 	for attr in attributes:
 		var value = start_level.get(attr)
 		if value != null:
-			print("setting: ", attr, "=", value)
 			set(attr, value)
 
 func _ready():
 	# This is so children classes can overwrite the ready function doing stuff before it
 	_on_ready()
 
-func _on_ready():
+func _load_from_global():
 	if_not_null_set()
 	if Global.next_level:
 		start_level = Global.next_level
 
+func _on_ready():
+	_load_from_global()
+	_populate_clues()
+
+func _populate_clues():
 	top_label.text = start_level.title
 	top_left = board_top_left.global_position
 	bottom_right = board_bottom_right.global_position
@@ -77,12 +86,23 @@ func _on_ready():
 	var last_pos = top_left
 	var x_offset = width / n_cols
 	var y_offset = height / n_rows
+	var sum_pos = Vector2.ZERO
 	var i = 1
 	for clue_resource in clues_array:
 		# Create the clue
 		var clue = Clue.instance()
 		clue.resource = clue_resource
-		clue.size = Vector2.ONE * clue_base_size
+
+		# Keep aspect ratio
+		var t_size = clue_resource.texture.get_size()
+		if t_size.x > t_size.y:
+			clue.size.x = clue_base_size
+			clue.size.y = t_size.y / t_size.x * clue_base_size
+		elif t_size.x < t_size.y:
+			clue.size.x = t_size.x / t_size.y * clue_base_size
+			clue.size.y = clue_base_size
+		else:
+			clue.size = Vector2.ONE * clue_base_size
 
 		# Add
 		clues.add_child(clue)
@@ -112,19 +132,25 @@ func _on_ready():
 		clue.global_position.x += rndf() * clue_max_random_offset
 		clue.global_position.y -= rndf() * clue_max_random_offset
 		clue.scale = board.scale * (1 + rndf() * clue_max_random_scale)
+		sum_pos += clue.global_position
 		board_clues.append(clue)
 
+	# Correct scale, centralize
+	clues.global_position += (top_left + bottom_right) / 2 - sum_pos / len(board_clues) / board.scale
 	clues.scale = Vector2.ONE / board.scale
-	clue_view_scale = min(width, height) / clue_base_size / 2
+	clue_view_scale = min(width, height) / clue_base_size / 2.0
 
 	for clue in board_clues:
 		clue.init()
+
+func _level_reset():
+	get_tree().reload_current_scene()
 
 
 func _process(_delta):
 	if debug_mode:
 		if Input.is_action_just_pressed("reset"):
-			get_tree().reload_current_scene()
+			_level_reset()
 
 	if Input.is_action_just_released("mouse_left_click") and viewing_clue:
 		viewing_clue.return_animation()
@@ -206,6 +232,8 @@ func on_drag_started(clue):
 
 func on_clue_right_click(clue):
 	clue.next = []
+	if check_chain_complete():
+		win_level()
 
 func on_drag_stopped(_clue):
 	canvas.clear_dash()
@@ -230,13 +258,28 @@ func check_chain_until(check_clue):
 	for clue in board_clues:
 		if check_clue.resource in clue.resource.next:
 			if not (check_clue in clue.next and check_chain_until(clue)):
+				if help_hint == null:
+					help_hint = "Connect: \"" + clue.description + "\" -> \"" + check_clue.description + "\""
 				return false
 	return true
 
 func check_chain_complete():
+
+	# Is there any not needed connection?
+	for check_clue in board_clues:
+		for clue in board_clues:
+			if clue == check_clue:
+				continue
+			if check_clue in clue.next and not check_clue.resource in clue.resource.next:
+				help_hint = "Remove: \"" + clue.description + "\" -> \"" + check_clue.description + "\""
+				return false
+
+	# Are all necessary connections there?
+	help_hint = null
 	for clue in board_clues:
 		if not check_chain_until(clue):
 			return false
+
 	return true
 
 
@@ -263,14 +306,35 @@ func win_level():
 		clue.disconnect("drag_stopped", self, "on_drag_stopped")
 		clue.disconnect("right_clicked", self, "on_clue_right_click")
 
+	confetti_timer.start()
+	confetti_tween.stop_all()
+	for particles in confetti:
+		confetti_tween.interpolate_property(particles.process_material, "shader_param/initial_velocity",
+		Vector3(0, 30, 0), Vector3(0, 3, 0), 0.5, confetti_tween.TRANS_QUART, confetti_tween.EASE_IN_OUT, 0.1)
+		confetti_tween.start()
+		particles.emitting = true
+
 func win_game():
 	top_label.text = "You won the game!"
+	resetbtn.text = "Play again"	
+	confetti_timer.disconnect("timeout", self, "_on_Win_Timer_timeout")
 	win_btn.visible = false
-
+	for particles in confetti:
+		particles.emitting = true
 
 func _on_MenuButton_pressed():
 	get_tree().change_scene("res://scenes/MainMenu.tscn")
 
 
 func _on_Button_pressed():
-	get_tree().reload_current_scene()
+	_level_reset()
+
+func _on_HelpBtn_pressed():
+	check_chain_complete()
+	if help_hint != null:
+		description_label.text = help_hint
+
+
+func _on_Win_Timer_timeout():
+	for particles in confetti:
+		particles.emitting = false

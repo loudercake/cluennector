@@ -28,6 +28,7 @@ for iso, country in tqdm(countries.items()):
     # if texture file does not exists continue
     r = load("clue.tres.base")
     r.add_ext_resource(texture, "Texture")
+    corrected_next = []
     for ct in next:
         nclue = f"{countries_cca3[ct]['cca2'].lower()}"
         if Path(f"images/{nclue}.png").exists():
@@ -35,6 +36,7 @@ for iso, country in tqdm(countries.items()):
                 f"res://levels/countries/clues/{nclue}.tres",
                 "Resource",
             )
+            corrected_next.append(ct)
         else:
             print(f"SKIPPING DANGLING Reference of {iso}: ", ct)
     s = GDSection(GDSectionHeader("resource"))
@@ -43,10 +45,12 @@ for iso, country in tqdm(countries.items()):
             "script": ExtResource(1),
             "description": description,
             "texture": ExtResource(2),
-            "next": [ExtResource(i) for i in range(3, len(next) + 3)],
+            "next": [ExtResource(i) for i in range(3, len(corrected_next) + 3)],
             "pos": Vector2(-1, -1),
         }
     )
     r.add_section(s)
     # print(r)
     r.write(f"./clues/{iso.lower()}.tres")
+
+print("Don't forget to run ./clean.sh before opening godot!")
