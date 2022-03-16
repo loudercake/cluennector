@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 description = "A mugshot of the only suspect."
 texture = ExtResource( 2 )
 next = [  ]
-pos = Vector2( 800, 250 )
+pos = Vector2( 100, 250 )

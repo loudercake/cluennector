@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/pe.png-a9dd074463b8f53c03bb45e91fc0fbe4.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://levels/countries/images/pe.png"
+dest_files=[ "res://.import/pe.png-a9dd074463b8f53c03bb45e91fc0fbe4.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" load_steps=14 format=2]
+
+[ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
+
+[ext_resource path="res://levels/countries/images/cd.png" type="Texture" id=2]
+
+[ext_resource path="res://levels/countries/clues/ao.tres" type="Resource" id=3]
+
+[ext_resource path="res://levels/countries/clues/bi.tres" type="Resource" id=4]
+
+[ext_resource path="res://levels/countries/clues/cf.tres" type="Resource" id=5]
+
+[ext_resource path="res://levels/countries/clues/cg.tres" type="Resource" id=6]
+
+[ext_resource path="res://levels/countries/clues/rw.tres" type="Resource" id=7]
+
+[ext_resource path="res://levels/countries/clues/ss.tres" type="Resource" id=8]
+
+[ext_resource path="res://levels/countries/clues/tz.tres" type="Resource" id=9]
+
+[ext_resource path="res://levels/countries/clues/ug.tres" type="Resource" id=10]
+
+[ext_resource path="res://levels/countries/clues/zm.tres" type="Resource" id=11]
+
+[resource]
+script = ExtResource( 1 )
+description = "DR Congo"
+texture = ExtResource( 2 )
+next = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
+pos = Vector2( -1, -1 )

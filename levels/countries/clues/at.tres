@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=10 format=2]
+
+[ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
+
+[ext_resource path="res://levels/countries/images/at.png" type="Texture" id=2]
+
+[ext_resource path="res://levels/countries/clues/cz.tres" type="Resource" id=3]
+
+[ext_resource path="res://levels/countries/clues/li.tres" type="Resource" id=4]
+
+[ext_resource path="res://levels/countries/clues/sk.tres" type="Resource" id=5]
+
+[ext_resource path="res://levels/countries/clues/si.tres" type="Resource" id=6]
+
+[ext_resource path="res://levels/countries/clues/ch.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+description = "Austria"
+texture = ExtResource( 2 )
+next = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
+pos = Vector2( -1, -1 )
