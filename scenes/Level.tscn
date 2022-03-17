@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/board.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Level.gd" type="Script" id=2]
-[ext_resource path="res://levels/level4/level4.tres" type="Resource" id=3]
+[ext_resource path="res://levels/level1/level1.tres" type="Resource" id=3]
 [ext_resource path="res://scenes/DrawingCanvas.gd" type="Script" id=4]
 [ext_resource path="res://shaders/confetti.shader" type="Shader" id=5]
 
