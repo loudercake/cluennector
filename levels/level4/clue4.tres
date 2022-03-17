@@ -10,3 +10,4 @@ description = "A spray can of one of the delinquents."
 texture = ExtResource( 2 )
 next = [ ExtResource( 3 ) ]
 pos = Vector2( 430, 410 )
+title = ""

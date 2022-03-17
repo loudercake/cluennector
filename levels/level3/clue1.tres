@@ -10,3 +10,4 @@ description = "A falsified evidence given by the testimony."
 texture = ExtResource( 2 )
 next = [ ExtResource( 3 ) ]
 pos = Vector2( 300, 250 )
+title = ""

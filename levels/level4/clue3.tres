@@ -10,3 +10,4 @@ description = "Some kid with a beer, I just follow what my boss puts on my desk.
 texture = ExtResource( 2 )
 next = [ ExtResource( 3 ) ]
 pos = Vector2( 110, 410 )
+title = ""

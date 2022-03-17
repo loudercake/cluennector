@@ -10,3 +10,4 @@ description = "The knife used for the murder."
 texture = ExtResource( 2 )
 next = [ ExtResource( 3 ) ]
 pos = Vector2( 287, 130 )
+title = ""

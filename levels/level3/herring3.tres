@@ -9,3 +9,4 @@ description = "A suspect, owner of the Generic Brand Pictures Model 7"
 texture = ExtResource( 2 )
 next = [  ]
 pos = Vector2( 725, 250 )
+title = ""

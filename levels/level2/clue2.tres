@@ -10,3 +10,4 @@ description = "A bloodstained blade of grass found in the crime scene."
 texture = ExtResource( 3 )
 next = [ ExtResource( 2 ) ]
 pos = Vector2( 258, 347 )
+title = ""

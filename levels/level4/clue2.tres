@@ -10,3 +10,4 @@ description = "Another delinquent setting off a very dangerous firework."
 texture = ExtResource( 2 )
 next = [ ExtResource( 3 ) ]
 pos = Vector2( 120, 250 )
+title = ""

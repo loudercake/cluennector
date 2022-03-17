@@ -10,3 +10,4 @@ description = "A beer. Just some beer i bought for some sort of evidence."
 texture = ExtResource( 2 )
 next = [ ExtResource( 3 ) ]
 pos = Vector2( 446, 270 )
+title = ""

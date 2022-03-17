@@ -9,3 +9,4 @@ description = "A drawing from a coworker's daughter."
 texture = ExtResource( 2 )
 next = [  ]
 pos = Vector2( 199, 200 )
+title = ""

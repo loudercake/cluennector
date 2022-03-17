@@ -9,3 +9,4 @@ description = "A suspect, owner of the Super Film 8000"
 texture = ExtResource( 2 )
 next = [  ]
 pos = Vector2( 725, 430 )
+title = ""

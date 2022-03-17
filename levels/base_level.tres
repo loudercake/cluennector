@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scenes/LevelResource.gd" type="Script" id=5]
+
+[resource]
+script = ExtResource( 5 )
+title = ""
+story = [  ]
+decoy = [  ]
+clue_max_rotation = 20.0
+clue_max_random_offset = 50.0
+clue_max_random_scale = 0.1
+clue_base_size = 6.0
+n_rows = 2

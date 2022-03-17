@@ -9,3 +9,4 @@ description = "Delinquent"
 texture = ExtResource( 2 )
 next = [  ]
 pos = Vector2( 700, 270 )
+title = ""

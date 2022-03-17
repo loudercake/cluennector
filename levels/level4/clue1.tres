@@ -10,3 +10,4 @@ description = "One of the delinquents doing very bad and evil graffiti on the wa
 texture = ExtResource( 2 )
 next = [ ExtResource( 3 ) ]
 pos = Vector2( 110, 100 )
+title = ""

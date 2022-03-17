@@ -9,3 +9,4 @@ description = "A suspect, owner of the SmileForIt 11"
 texture = ExtResource( 2 )
 next = [  ]
 pos = Vector2( 700, 90 )
+title = ""

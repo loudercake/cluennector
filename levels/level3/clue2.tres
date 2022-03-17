@@ -10,3 +10,4 @@ description = "A test picture taken with one of the suspect's Super Film 8000"
 texture = ExtResource( 2 )
 next = [ ExtResource( 3 ) ]
 pos = Vector2( 500, 90 )
+title = ""

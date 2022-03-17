@@ -9,3 +9,4 @@ description = "A mugshot of the only suspect."
 texture = ExtResource( 2 )
 next = [  ]
 pos = Vector2( 100, 250 )
+title = ""
