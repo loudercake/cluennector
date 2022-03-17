@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=9 format=2]
+[gd_resource type="Resource" load_steps=10 format=2]
 
 [ext_resource path="res://scenes/LevelResource.gd" type="Script" id=1]
 [ext_resource path="res://levels/level3/clue1.tres" type="Resource" id=2]
@@ -8,12 +8,14 @@
 [ext_resource path="res://levels/level3/herring3.tres" type="Resource" id=6]
 [ext_resource path="res://levels/level3/herring4.tres" type="Resource" id=7]
 [ext_resource path="res://levels/level3/clue3.tres" type="Resource" id=8]
+[ext_resource path="res://levels/level4/level4.tres" type="Resource" id=9]
 
 [resource]
 script = ExtResource( 1 )
 title = "Fake Evidence"
 story = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ) ]
 decoy = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 6 ) ]
+next_level = ExtResource( 9 )
 clue_max_rotation = 20.0
 clue_max_random_offset = 50.0
 clue_max_random_scale = 0.1
