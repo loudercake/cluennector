@@ -1,13 +1,13 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
-[ext_resource path="res://levels/level4/graffiti.png" type="Texture" id=2]
+[ext_resource path="res://levels/level4/newspaper1.png" type="Texture" id=2]
 [ext_resource path="res://levels/level4/clue4.tres" type="Resource" id=3]
 
 [resource]
 script = ExtResource( 1 )
-description = "One of the delinquents doing very bad and evil graffiti on the wall."
+description = "A man with a slightly square head has been seen stealing 3 sawblades from the local hardware store."
 texture = ExtResource( 2 )
 next = [ ExtResource( 3 ) ]
-pos = Vector2( 110, 100 )
+pos = Vector2( 140, 140 )
 title = ""

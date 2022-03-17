@@ -1,21 +1,20 @@
-[gd_resource type="Resource" load_steps=11 format=2]
+[gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://levels/level4/clue2.tres" type="Resource" id=1]
 [ext_resource path="res://levels/level4/clue6.tres" type="Resource" id=2]
 [ext_resource path="res://levels/level4/clue1.tres" type="Resource" id=3]
-[ext_resource path="res://levels/level4/clue8.tres" type="Resource" id=4]
+[ext_resource path="res://levels/level5/level4.tres" type="Resource" id=4]
 [ext_resource path="res://scenes/LevelResource.gd" type="Script" id=5]
-[ext_resource path="res://levels/level4/clue9.tres" type="Resource" id=6]
 [ext_resource path="res://levels/level4/clue4.tres" type="Resource" id=7]
 [ext_resource path="res://levels/level4/clue5.tres" type="Resource" id=8]
-[ext_resource path="res://levels/level4/clue7.tres" type="Resource" id=9]
 [ext_resource path="res://levels/level4/clue3.tres" type="Resource" id=10]
 
 [resource]
 script = ExtResource( 5 )
-title = "Rowdy Teens"
-story = [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 6 ) ]
+title = ""
+story = [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 2 ) ]
 decoy = [  ]
+next_level = ExtResource( 4 )
 clue_max_rotation = 20.0
 clue_max_random_offset = 50.0
 clue_max_random_scale = 0.1
