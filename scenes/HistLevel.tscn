@@ -23,7 +23,6 @@ margin_top = -34.0
 margin_bottom = 66.0
 
 [node name="NextLevelBtn" parent="UI/Control" index="6"]
-visible = true
 margin_left = -106.0
 margin_top = -62.0
 margin_right = 1.0

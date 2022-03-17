@@ -24,7 +24,6 @@ Global="*res://scenes/global.gd"
 window/size/width=1156
 window/size/height=700
 window/stretch/mode="viewport"
-window/stretch/aspect="keep"
 
 [input]
 
