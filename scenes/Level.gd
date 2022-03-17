@@ -38,10 +38,6 @@ onready var confetti_timer = $Win/Timer
 onready var confetti_tween = $Win/Tween
 onready var resetbtn = $UI/Control/ResetButton
 
-# Not used yet
-# onready var http = HttpHelper.new(self)
-
-
 func debug(string):
 	print(string)
 
@@ -144,7 +140,7 @@ func _populate_clues():
 		clue.init()
 
 func _level_reset():
-	get_tree().reload_current_scene()
+	return get_tree().reload_current_scene()
 
 
 func _process(_delta):
@@ -194,7 +190,7 @@ func on_clue_mouse_entered(clue):
 # hover after delay
 func on_clue_hover(clue):
 	if not viewing_clue:
-		description_label.text = clue.description
+		description_label.text = clue.get_title()
 
 # unhover and mouse exit
 func on_clue_unhover(_clue):
@@ -259,7 +255,7 @@ func check_chain_until(check_clue):
 		if check_clue.resource in clue.resource.next:
 			if not (check_clue in clue.next and check_chain_until(clue)):
 				if help_hint == null:
-					help_hint = "Connect: \"" + clue.description + "\" -> \"" + check_clue.description + "\""
+					help_hint = "Connect: \"" + clue.get_title() + "\" -> \"" + check_clue.get_title() + "\""
 				return false
 	return true
 
@@ -271,7 +267,7 @@ func check_chain_complete():
 			if clue == check_clue:
 				continue
 			if check_clue in clue.next and not check_clue.resource in clue.resource.next:
-				help_hint = "Remove: \"" + clue.description + "\" -> \"" + check_clue.description + "\""
+				help_hint = "Remove: \"" + clue.get_title() + "\" -> \"" + check_clue.get_title() + "\""
 				return false
 
 	# Are all necessary connections there?
@@ -288,7 +284,7 @@ func _on_NextLevelBtn_pressed():
 	if not Global.next_level:
 		win_game()
 	else:
-		get_tree().reload_current_scene()
+		return get_tree().reload_current_scene()
 	return
 
 
@@ -323,7 +319,7 @@ func win_game():
 		particles.emitting = true
 
 func _on_MenuButton_pressed():
-	get_tree().change_scene("res://scenes/MainMenu.tscn")
+	return get_tree().change_scene("res://scenes/MainMenu.tscn")
 
 
 func _on_Button_pressed():

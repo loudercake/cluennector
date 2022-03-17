@@ -9,3 +9,4 @@ description = "A photocopy of a photocopy of a paper. "
 texture = ExtResource( 2 )
 next = [  ]
 pos = Vector2( 400, 260 )
+title = ""

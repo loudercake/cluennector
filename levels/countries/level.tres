@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-title = "Connect the biggest country to its neighbours"
+title = ""
 story = [  ]
 decoy = [  ]
 clue_max_rotation = 10.0

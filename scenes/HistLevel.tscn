@@ -1,5 +1,39 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/GeoLevel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/HistLevel.gd" type="Script" id=2]
+[ext_resource path="res://levels/base_level.tres" type="Resource" id=3]
 
 [node name="Level" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+start_level = ExtResource( 3 )
+
+[node name="MenuButton" parent="UI/Control" index="0"]
+margin_left = -25.0
+margin_top = -67.0
+margin_right = 72.0
+margin_bottom = -41.0
+
+[node name="HelpBtn" parent="UI/Control" index="3"]
+margin_left = -194.0
+margin_right = -113.0
+
+[node name="DescLabel" parent="UI/Control" index="5"]
+margin_top = -34.0
+margin_bottom = 66.0
+
+[node name="NextLevelBtn" parent="UI/Control" index="6"]
+visible = true
+margin_left = -106.0
+margin_top = -62.0
+margin_right = 1.0
+margin_bottom = -42.0
+
+[node name="LineEdit" parent="UI/Control" index="7"]
+visible = false
+
+[node name="TopLeft" parent="BoardLimits" index="0"]
+position = Vector2( -78, -51 )
+
+[node name="BottomRight" parent="BoardLimits" index="1"]
+position = Vector2( 1077, 548 )

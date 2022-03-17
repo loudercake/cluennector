@@ -9,3 +9,4 @@ description = "A test picture taken with one of the suspect's Generic Brand Pict
 texture = ExtResource( 2 )
 next = [  ]
 pos = Vector2( 500, 430 )
+title = ""

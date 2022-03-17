@@ -15,6 +15,7 @@ var has_mouse: bool = false
 var has_drag_stared: bool = false
 
 var description: String = ""
+var title: String = ""
 var size = Vector2.ONE * 5
 var texture: Texture
 var resource
@@ -46,9 +47,10 @@ func _ready():
 	texture = resource.texture
 	position = resource.pos
 	description = resource.description
-	valid_next_list = resource.next
 	if not description:
 		description = "No description."
+	title = resource.title
+	valid_next_list = resource.next
 	collision.shape.extents = size
 	sprite.texture = texture
 	sprite.scale = size / texture.get_size() * 2
@@ -63,6 +65,9 @@ func init():
 
 func diagonal_size():
 	return (get_parent().get_parent().scale * size).length()
+
+func get_title():
+	return title if title else description
 
 func stop_drag():
 	has_drag_stared = false

@@ -11,14 +11,16 @@ func _ready():
 	Global.next_level = null
 
 func _on_GameBtn_pressed():
-	get_tree().change_scene("res://scenes/Level.tscn")
+	return get_tree().change_scene("res://scenes/Level.tscn")
 
 func _on_GeoBtn_pressed():
-	get_tree().change_scene("res://scenes/GeoLevel.tscn")
+	return get_tree().change_scene("res://scenes/GeoLevel.tscn")
 
 func _on_HistoryBtn_pressed():
-	# get_tree().change_scene("res://scenes/HistLevel.tscn")
-	pass # Replace with function body.
+	return get_tree().change_scene("res://scenes/HistLevel.tscn")
 
 func _on_QuitBtn_pressed():
+	if OS.get_name() == "HTML5":
+		JavaScript.eval("confirm('Close this tab?') && window.close();")
+		return
 	get_tree().quit()

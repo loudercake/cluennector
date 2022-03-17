@@ -16,6 +16,7 @@ func _on_ready():
 	._populate_clues()
 	for clue in board_clues:
 		clue.border_width = 12.0
+	top_label.text = "Connect the bigger countries to its neighboring ones"
 
 func generate_random_level():
 	randomize()
@@ -38,7 +39,7 @@ func generate_random_level():
 func _on_NextLevelBtn_pressed():
 	description_label.text = "loading next level... "
 	generate_random_level()
-	get_tree().reload_current_scene()
+	return get_tree().reload_current_scene()
 
 func _level_reset():
 	var text = line_edit.text.to_lower()

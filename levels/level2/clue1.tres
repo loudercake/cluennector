@@ -9,3 +9,4 @@ description = "A polaroid taken by of one of the testimonies."
 texture = ExtResource( 2 )
 next = [  ]
 pos = Vector2( 800, 250 )
+title = ""
