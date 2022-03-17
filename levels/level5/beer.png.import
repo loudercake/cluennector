@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/teenwithbeer.png-1cf85bebf0d555840cf8b06697ff8ab3.stex"
+path="res://.import/beer.png-8f391f68dd20382b15fb3b373e2c179f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/level4/teenwithbeer.png"
-dest_files=[ "res://.import/teenwithbeer.png-1cf85bebf0d555840cf8b06697ff8ab3.stex" ]
+source_file="res://levels/level5/beer.png"
+dest_files=[ "res://.import/beer.png-8f391f68dd20382b15fb3b373e2c179f.stex" ]
 
 [params]
 

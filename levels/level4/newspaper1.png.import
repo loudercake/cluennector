@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mugshot3.png-573f90a8e2a01c0cbeaae745e1b9c330.stex"
+path="res://.import/newspaper1.png-7224e3c4871e72764741cb995bc23a4c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/level4/mugshot3.png"
-dest_files=[ "res://.import/mugshot3.png-573f90a8e2a01c0cbeaae745e1b9c330.stex" ]
+source_file="res://levels/level4/newspaper1.png"
+dest_files=[ "res://.import/newspaper1.png-7224e3c4871e72764741cb995bc23a4c.stex" ]
 
 [params]
 

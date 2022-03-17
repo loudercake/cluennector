@@ -1,12 +1,11 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://scenes/ClueResource.gd" type="Script" id=1]
-
-[sub_resource type="StreamTexture" id=1]
+[ext_resource path="res://levels/level5/mugshot2.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-description = "First clue"
-texture = SubResource( 1 )
+description = "Delinquent"
+texture = ExtResource( 2 )
 next = [  ]
-pos = Vector2( 0, 0 )
+pos = Vector2( 700, 410 )

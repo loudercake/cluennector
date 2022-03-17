@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mugshot2.png-d50338b006c98a97596e5b175479271b.stex"
+path="res://.import/graffiti.png-a7194871f1bc595bb195f45a8d5cf924.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/level4/mugshot2.png"
-dest_files=[ "res://.import/mugshot2.png-d50338b006c98a97596e5b175479271b.stex" ]
+source_file="res://levels/level5/graffiti.png"
+dest_files=[ "res://.import/graffiti.png-a7194871f1bc595bb195f45a8d5cf924.stex" ]
 
 [params]
 
