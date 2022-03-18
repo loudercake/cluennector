@@ -7,7 +7,7 @@ func _init(p_parent: Node):
 
 func _on_HTTPRequest_json_request_completed(result:int, response_code:int, headers:PoolStringArray, body:PoolByteArray, http, callback, extra, on_error):
 	if response_code != 200:
-		print("Http request error!")
+		print("Http request error! response_code: ", response_code)
 		if on_error:
 			parent.call(on_error, extra)
 		return
@@ -27,7 +27,7 @@ func _on_HTTPRequest_json_request_completed(result:int, response_code:int, heade
 
 func _on_HTTPRequest_image_request_completed(result:int, response_code:int, headers:PoolStringArray, body:PoolByteArray, http, callback, extra, on_error):
 	if response_code != 200:
-		print("Http request error!")
+		print("Http request error! response_code: ", response_code)
 		if on_error:
 			parent.call(on_error, extra)
 		return

@@ -24,63 +24,76 @@ anchor_bottom = 0.9
 
 [node name="GameBtn" type="Button" parent="VBoxContainer"]
 margin_right = 462.0
-margin_bottom = 45.0
+margin_bottom = 37.0
 size_flags_vertical = 3
 text = "Detectkve"
 
 [node name="VSpace" type="Control" parent="VBoxContainer"]
-margin_top = 49.0
+margin_top = 41.0
 margin_right = 462.0
-margin_bottom = 94.0
+margin_bottom = 78.0
 size_flags_vertical = 3
 
 [node name="GeoBtn" type="Button" parent="VBoxContainer"]
-margin_top = 98.0
+margin_top = 82.0
 margin_right = 462.0
-margin_bottom = 144.0
+margin_bottom = 119.0
 size_flags_vertical = 3
 text = "Geography"
 
 [node name="VSpace2" type="Control" parent="VBoxContainer"]
-margin_top = 148.0
+margin_top = 123.0
 margin_right = 462.0
-margin_bottom = 193.0
+margin_bottom = 160.0
 size_flags_vertical = 3
 
 [node name="HistoryBtn" type="Button" parent="VBoxContainer"]
-margin_top = 197.0
+margin_top = 164.0
 margin_right = 462.0
-margin_bottom = 243.0
+margin_bottom = 201.0
 size_flags_vertical = 3
 text = "History"
 
 [node name="VSpace3" type="Control" parent="VBoxContainer"]
-margin_top = 247.0
+margin_top = 205.0
 margin_right = 462.0
-margin_bottom = 292.0
+margin_bottom = 243.0
 size_flags_vertical = 3
 
-[node name="VSpace4" type="Control" parent="VBoxContainer"]
-margin_top = 296.0
+[node name="PokeBtn" type="Button" parent="VBoxContainer"]
+margin_top = 247.0
 margin_right = 462.0
-margin_bottom = 341.0
+margin_bottom = 284.0
+size_flags_vertical = 3
+text = "Pokemon"
+
+[node name="VSpace4" type="Control" parent="VBoxContainer"]
+margin_top = 288.0
+margin_right = 462.0
+margin_bottom = 325.0
 size_flags_vertical = 3
 
 [node name="VSpace5" type="Control" parent="VBoxContainer"]
-margin_top = 345.0
+margin_top = 329.0
 margin_right = 462.0
-margin_bottom = 391.0
+margin_bottom = 366.0
+size_flags_vertical = 3
+
+[node name="VSpace6" type="Control" parent="VBoxContainer"]
+margin_top = 370.0
+margin_right = 462.0
+margin_bottom = 407.0
 size_flags_vertical = 3
 
 [node name="QuitBtn" type="Button" parent="VBoxContainer"]
-margin_top = 395.0
+margin_top = 411.0
 margin_right = 462.0
-margin_bottom = 440.0
+margin_bottom = 448.0
 size_flags_vertical = 3
 text = "Quit"
 
-[node name="VSpace6" type="Control" parent="VBoxContainer"]
-margin_top = 444.0
+[node name="VSpace7" type="Control" parent="VBoxContainer"]
+margin_top = 452.0
 margin_right = 462.0
 margin_bottom = 490.0
 size_flags_vertical = 3
@@ -88,4 +101,5 @@ size_flags_vertical = 3
 [connection signal="pressed" from="VBoxContainer/GameBtn" to="." method="_on_GameBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/GeoBtn" to="." method="_on_GeoBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/HistoryBtn" to="." method="_on_HistoryBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/PokeBtn" to="." method="_on_PokeBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitBtn" to="." method="_on_QuitBtn_pressed"]
