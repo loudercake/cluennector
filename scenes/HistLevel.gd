@@ -1,7 +1,7 @@
 extends "res://scenes/Level.gd"
 
 const BaseClue = preload("res://scenes/ClueResource.gd")
-const API = "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/"
+var API = "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/"
 const MAX_CLUES = 12
 const MAX_EVENTS = 3
 
@@ -9,6 +9,7 @@ onready var http = HttpHelper.new(self)
 
 var n_clues_added = 0
 var events_texts = PoolStringArray()
+var border_width_override = 8.0
 
 func _on_ready():
 	http = HttpHelper.new(self)
@@ -23,7 +24,7 @@ func on_level_ready():
 	._populate_clues()
 	for clue in board_clues:
 		clue.set_block_signals(true)
-		clue.border_width = 8.0
+		clue.border_width = border_width_override
 	bottom_right += Vector2(0, 100)
 
 
@@ -96,7 +97,7 @@ func add_event(json, idx):
 	return true
 
 func on_request_error(_extra):
-	# on_level_ready()
+	on_level_ready()
 	top_label.text = "Error loading level :("
 
 func on_add_error(clue_resource):
