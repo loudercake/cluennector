@@ -4,6 +4,7 @@ const BaseClue = preload("res://scenes/ClueResource.gd")
 var API = "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/"
 const MAX_CLUES = 12
 const MAX_EVENTS = 3
+const loading_texture_size = 6
 
 onready var http = HttpHelper.new(self)
 
@@ -25,6 +26,8 @@ func on_level_ready():
 	for clue in board_clues:
 		clue.set_block_signals(true)
 		clue.border_width = border_width_override
+		clue.size = Vector2.ONE * loading_texture_size
+		.reset_clue_texture(clue, clue.texture, clue.size)
 	bottom_right += Vector2(0, 100)
 
 
@@ -107,19 +110,7 @@ func on_add_error(clue_resource):
 func add_texture(texture, clue_resource):
 	for clue in board_clues:
 		if clue.resource == clue_resource:
-			clue.sprite.texture = texture
-			clue.texture = texture
-			var t_size = texture.get_size()
-			if t_size.x > t_size.y:
-				clue.size.x = clue_base_size
-				clue.size.y = t_size.y / t_size.x * clue_base_size
-			elif t_size.x < t_size.y:
-				clue.size.x = t_size.x / t_size.y * clue_base_size
-				clue.size.y = clue_base_size
-			else:
-				clue.size = Vector2.ONE * clue_base_size
-			clue.sprite.scale = clue.size / clue.texture.get_size() * 2
-			clue.init()
+			.reset_clue_texture(clue, texture)
 			clue.set_block_signals(false)
 			return
 

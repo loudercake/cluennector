@@ -334,3 +334,21 @@ func _on_HelpBtn_pressed():
 func _on_Win_Timer_timeout():
 	for particles in confetti:
 		particles.emitting = false
+
+func reset_clue_texture(clue, texture, size=null):
+	clue.sprite.texture = texture
+	clue.texture = texture
+	if size != null:
+		clue.size = size
+	else:
+		var t_size = texture.get_size()
+		if t_size.x > t_size.y:
+			clue.size.x = clue_base_size
+			clue.size.y = t_size.y / t_size.x * clue_base_size
+		elif t_size.x < t_size.y:
+			clue.size.x = t_size.x / t_size.y * clue_base_size
+			clue.size.y = clue_base_size
+		else:
+			clue.size = Vector2.ONE * clue_base_size
+	clue.sprite.scale = clue.size / clue.texture.get_size() * 2
+	clue.init()
