@@ -9,9 +9,9 @@ script = ExtResource( 2 )
 start_level = ExtResource( 3 )
 
 [node name="MenuButton" parent="UI/Control" index="0"]
-margin_left = -25.0
+margin_left = -3.0
 margin_top = -67.0
-margin_right = 72.0
+margin_right = 94.0
 margin_bottom = -41.0
 
 [node name="HelpBtn" parent="UI/Control" index="3"]

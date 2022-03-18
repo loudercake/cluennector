@@ -87,7 +87,6 @@ func add_decoy(json):
 	var evolution = {"species": {"name": json["name"], "url": str(json["id"]) + "/"}}
 	generate_clue(evolution)
 	completed_chains += 1
-	print("decoy: ", completed_chains)
 
 func on_chain_info(json, is_decoy):
 	if is_decoy:
@@ -100,13 +99,11 @@ func on_chain_info(json, is_decoy):
 	top_label.set_deferred("text", "Complete the evolution tree(s). There can be decoys.")
 
 	completed_chains += 1
-	print("chain: ", completed_chains)
 	if completed_chains == n_chains:
-		print("loadin gready level")
 		on_level_ready()
 
 func on_request_error(_extra):
-	on_level_ready()
+	# on_level_ready()
 	top_label.text = "Error loading level :("
 
 func _on_NextLevelBtn_pressed():
