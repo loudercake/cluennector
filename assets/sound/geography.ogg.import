@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/geography.ogg-1d4bfafc917702e97e6564bd64cbf07b.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/geography.ogg"
+dest_files=[ "res://.import/geography.ogg-1d4bfafc917702e97e6564bd64cbf07b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

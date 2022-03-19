@@ -6,26 +6,36 @@
 
 [node name="Level" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+music = 2
 start_level = ExtResource( 3 )
 
+[node name="Board" parent="." index="2"]
+scale = Vector2( 9.2, 8 )
+
 [node name="TopLabel" parent="UI/Control" index="1"]
-margin_right = -261.0
+margin_left = 11.0
+margin_top = 11.0
+margin_right = -269.0
+margin_bottom = 25.0
 
 [node name="HelpBtn" parent="UI/Control" index="3"]
+visible = true
 margin_left = -261.0
 margin_right = -180.0
+focus_next = NodePath("../LineEdit")
 
 [node name="LineEdit" type="LineEdit" parent="UI/Control" index="7"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -173.0
-margin_top = -8.0
-margin_right = -109.0
-margin_bottom = 16.0
+margin_left = -171.0
+margin_top = 3.0
+margin_right = -107.0
+margin_bottom = 27.0
+focus_next = NodePath("../ResetButton")
 max_length = 2
 
 [node name="TopLeft" parent="BoardLimits" index="0"]
-position = Vector2( -61, -2 )
+position = Vector2( -35, -14 )
 
 [node name="BottomRight" parent="BoardLimits" index="1"]
-position = Vector2( 1063, 537 )
+position = Vector2( 1204, 550 )

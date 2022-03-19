@@ -29,8 +29,9 @@ shader_param/drag = 3.5
 shader_param/scatter = 2.0
 shader_param/random_colors = SubResource( 5 )
 
-[node name="Level2" type="Node"]
+[node name="Level" type="Node"]
 script = ExtResource( 2 )
+music = 1
 start_level = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -45,7 +46,7 @@ script = ExtResource( 4 )
 
 [node name="Board" type="Sprite" parent="."]
 position = Vector2( 65, 50 )
-scale = Vector2( 8, 8 )
+scale = Vector2( 9, 8 )
 texture = ExtResource( 1 )
 centered = false
 
@@ -55,19 +56,19 @@ centered = false
 z_index = 20
 
 [node name="Control" type="Control" parent="UI"]
-margin_left = 65.0
-margin_top = 16.0
-margin_right = 1109.0
-margin_bottom = 638.0
+margin_left = 55.0
+margin_top = 5.0
+margin_right = 1235.0
+margin_bottom = 681.0
 mouse_filter = 2
 
 [node name="MenuButton" type="Button" parent="UI/Control"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = -12.0
-margin_top = -55.0
-margin_right = 85.0
-margin_bottom = -29.0
+margin_left = 13.0
+margin_top = -103.0
+margin_right = 110.0
+margin_bottom = -77.0
 shortcut = SubResource( 2 )
 text = "Main Menu"
 
@@ -80,19 +81,20 @@ align = 1
 [node name="ResetButton" type="Button" parent="UI/Control"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -101.0
-margin_top = -8.0
-margin_right = -20.0
-margin_bottom = 20.0
+margin_left = -99.0
+margin_top = 3.0
+margin_right = -18.0
+margin_bottom = 31.0
 text = "RESET"
 
 [node name="HelpBtn" type="Button" parent="UI/Control"]
+visible = false
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -189.0
-margin_top = -8.0
-margin_right = -108.0
-margin_bottom = 20.0
+margin_left = -187.0
+margin_top = 3.0
+margin_right = -106.0
+margin_bottom = 31.0
 text = "?"
 
 [node name="ColorRect" type="ColorRect" parent="UI/Control"]
@@ -105,7 +107,8 @@ color = Color( 0, 0, 0, 0.396078 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -14.0
+margin_top = -62.0
+margin_bottom = 24.0
 align = 1
 autowrap = true
 
@@ -128,7 +131,7 @@ __meta__ = {
 }
 
 [node name="BottomRight" type="Position2D" parent="BoardLimits"]
-position = Vector2( 1068, 536 )
+position = Vector2( 1213, 552 )
 __meta__ = {
 "_gizmo_extents_": 100.0
 }
@@ -142,7 +145,7 @@ wait_time = 4.0
 one_shot = true
 
 [node name="Particles2D" type="Particles2D" parent="Win"]
-position = Vector2( 729, -24 )
+position = Vector2( 904, -25 )
 scale = Vector2( 7, 7 )
 z_index = 1000
 emitting = false

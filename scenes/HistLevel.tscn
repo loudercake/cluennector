@@ -6,33 +6,58 @@
 
 [node name="Level" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+music = 3
 start_level = ExtResource( 3 )
 
+[node name="Control" parent="UI" index="0"]
+margin_left = 62.0
+margin_top = -2.0
+margin_right = 1224.0
+margin_bottom = 638.0
+
 [node name="MenuButton" parent="UI/Control" index="0"]
-margin_left = -3.0
-margin_top = -67.0
-margin_right = 94.0
-margin_bottom = -41.0
+margin_left = 6.0
+margin_top = -65.0
+margin_right = 103.0
+margin_bottom = -39.0
+
+[node name="TopLabel" parent="UI/Control" index="1"]
+margin_left = 7.0
+margin_top = 24.0
+margin_right = -194.0
+margin_bottom = 38.0
+
+[node name="ResetButton" parent="UI/Control" index="2"]
+margin_left = -92.0
+margin_top = 15.0
+margin_right = -11.0
+margin_bottom = 43.0
 
 [node name="HelpBtn" parent="UI/Control" index="3"]
-margin_left = -194.0
-margin_right = -113.0
+margin_left = -185.0
+margin_top = 15.0
+margin_right = -104.0
+margin_bottom = 43.0
+focus_next = NodePath("../ResetButton")
 
 [node name="DescLabel" parent="UI/Control" index="5"]
-margin_top = -34.0
+margin_top = -25.0
 margin_bottom = 66.0
 
 [node name="NextLevelBtn" parent="UI/Control" index="6"]
-margin_left = -106.0
-margin_top = -62.0
-margin_right = 1.0
-margin_bottom = -42.0
+margin_left = -118.0
+margin_top = -21.0
+margin_right = -11.0
+margin_bottom = -1.0
 
 [node name="LineEdit" parent="UI/Control" index="7"]
 visible = false
 
 [node name="TopLeft" parent="BoardLimits" index="0"]
-position = Vector2( -79, -51 )
+position = Vector2( -84, -48 )
 
 [node name="BottomRight" parent="BoardLimits" index="1"]
-position = Vector2( 1077, 548 )
+position = Vector2( 1216, 564 )
+
+[node name="Particles2D" parent="Win" index="2"]
+position = Vector2( 871, -24 )

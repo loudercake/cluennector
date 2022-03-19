@@ -1,5 +1,25 @@
 extends Node
 
+enum MUSIC {
+	WIN_GAME,
+	DETECTIVE,
+	GEOGRAPHY,
+	HISTORY,
+	POKEMON,
+}
+
+enum SFX {
+	BUTTON,
+	BACK,
+	WIN,
+	PAPER,
+	CONNECT,
+	DISCONNECT,
+}
+
+
+export(MUSIC) var music
+
 const HttpHelper = preload("HttpHelper.gd")
 
 export(Resource) var start_level
@@ -56,6 +76,9 @@ func if_not_null_set():
 			set(attr, value)
 
 func _ready():
+	if not Global.music_player.playing:
+		Global.play_music(music)
+
 	# This is so children classes can overwrite the ready function doing stuff before it
 	_on_ready()
 
@@ -152,6 +175,7 @@ func _process(_delta):
 		viewing_clue.return_animation()
 		background.visible = false
 		viewing_clue = null
+		Global.play(SFX.PAPER)
 		description_label.text = ""
 
 	if Input.is_action_just_released("mouse_left_click"):
@@ -219,8 +243,10 @@ func on_clue_click(clue):
 	clue.click_animation(center, Vector2.ONE * clue_view_scale, 2 * PI)
 	viewing_clue = clue
 	background.visible = true
+	Global.play(SFX.PAPER)
 
 func on_drag_started(clue):
+	Global.play(SFX.BUTTON)
 	is_connecting = true
 	start_clue = clue
 	canvas.dash_start = clue.initial_position
@@ -228,6 +254,7 @@ func on_drag_started(clue):
 
 func on_clue_right_click(clue):
 	clue.next = []
+	Global.play(SFX.DISCONNECT)
 	if check_chain_complete():
 		win_level()
 
@@ -238,8 +265,9 @@ func on_drag_stopped(_clue):
 	if can_connect and end_clue and not start_clue in end_clue.next:
 		start_clue.next.append(end_clue)
 		canvas.add_clue(start_clue)
+		Global.play(SFX.CONNECT)
 	elif start_clue:
-		pass
+		Global.play(SFX.DISCONNECT)
 		# start_clue.next = null
 	start_clue = null
 	end_clue = null
@@ -280,6 +308,7 @@ func check_chain_complete():
 
 
 func _on_NextLevelBtn_pressed():
+	Global.play(SFX.BUTTON)
 	Global.next_level = start_level.next_level
 	if not Global.next_level:
 		win_game()
@@ -289,6 +318,7 @@ func _on_NextLevelBtn_pressed():
 
 
 func win_level():
+	Global.play(SFX.WIN)
 	win_btn.visible = true
 	win_btn.grab_focus()
 	top_label.text = "You won!"
@@ -311,6 +341,7 @@ func win_level():
 		particles.emitting = true
 
 func win_game():
+	Global.play_music_once(MUSIC.WIN_GAME)
 	top_label.text = "You won the game!"
 	resetbtn.text = "Play again"	
 	confetti_timer.disconnect("timeout", self, "_on_Win_Timer_timeout")
@@ -319,13 +350,16 @@ func win_game():
 		particles.emitting = true
 
 func _on_MenuButton_pressed():
+	Global.play(SFX.BACK)
 	return get_tree().change_scene("res://scenes/MainMenu.tscn")
 
 
 func _on_Button_pressed():
+	Global.play(SFX.BUTTON)
 	_level_reset()
 
 func _on_HelpBtn_pressed():
+	Global.play(SFX.BUTTON)
 	check_chain_complete()
 	if help_hint != null:
 		description_label.text = help_hint

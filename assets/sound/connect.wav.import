@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/connect.wav-6e0eed7d8f48627ac0eeb5b5848bd982.sample"
+
+[deps]
+
+source_file="res://assets/sound/connect.wav"
+dest_files=[ "res://.import/connect.wav-6e0eed7d8f48627ac0eeb5b5848bd982.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

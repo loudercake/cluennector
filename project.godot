@@ -13,7 +13,12 @@ config_version=4
 config/name="Cluennector"
 config/description="Connect the clues, solve the crime!"
 run/main_scene="res://scenes/MainMenu.tscn"
+boot_splash/image="res://assets/wildling-wallpaper.png"
 config/icon="res://icon.png"
+
+[audio]
+
+output_latency=8
 
 [autoload]
 
@@ -21,9 +26,13 @@ Global="*res://scenes/global.gd"
 
 [display]
 
-window/size/width=1156
-window/size/height=700
+window/size/width=1280
+window/size/height=720
 window/stretch/mode="viewport"
+
+[global]
+
+splash=false
 
 [input]
 
