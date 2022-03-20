@@ -9,13 +9,13 @@ tar -xvzf ghr_*.tar.gz
 mv ghr_*_amd64 ghr
 
 rm -rf ./html/.git
-rm -rf ./html/index.php
-rm -rf ./html/composer.json
+rm -f ./html/index.php
+rm -f ./html/composer.json
 
 zip linux.zip linux/*
 zip macos.zip macos/*
 zip windows.zip windows/*
-zip html5.zip ./html
+zip html5.zip ./html/*
 mv *.zip release/
 
 echo "RELEASE VERSION $VERSION"
