@@ -6,7 +6,7 @@ Connect clues puzzle game. It includes a main mode (detective) and 3 extras/wip:
 
 Live demo at: https://cluennector.herokuapp.com/
 
-This game was developed having in mind the march's 2022 godot game jam with the theme "connect".
+This game was developed having in mind the march's 2022 godot game jam with the theme "combine".
 
 ## Detective
 
