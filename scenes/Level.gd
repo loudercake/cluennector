@@ -257,6 +257,14 @@ func on_drag_started(clue):
 	canvas.dash_end = get_viewport().get_mouse_position()
 
 func on_clue_right_click(clue):
+	for nclue in clue.next:
+		var can_remove = true
+		for bclue in board_clues:
+			if bclue != clue and nclue in bclue.next:
+				can_remove = false
+				continue
+		if can_remove:
+			nclue.remove_pin()
 	clue.next = []
 	Global.play(SFX.DISCONNECT)
 	if check_chain_complete():
@@ -270,6 +278,7 @@ func on_drag_stopped(_clue):
 		start_clue.next.append(end_clue)
 		canvas.add_clue(start_clue)
 		Global.play(SFX.CONNECT)
+		end_clue.add_pin()
 	elif start_clue:
 		Global.play(SFX.DISCONNECT)
 		# start_clue.next = null

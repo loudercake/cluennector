@@ -2,6 +2,9 @@ extends Node2D
 
 export var hover_border_color = Color(0.95, 0.1, 0, 1)
 export var pressed_border_color = Color(0, 0.1, 0.95, 1)
+export var pin_out = Vector2(-1, -5)
+export var pin_in = Vector2(-2, -4)
+
 
 var hover_scale = 1.3
 var modulate_scale = Color(1.3, 1.3, 1.3, 1)
@@ -21,6 +24,7 @@ var texture: Texture
 var resource
 var valid_next_list = []
 var next = []
+var pinned = false
 
 
 var initial_scale = Vector2.ONE
@@ -34,6 +38,8 @@ onready var sprite = $Sprite
 onready var timer = $Timer
 onready var hover_tween = $HoverTween
 onready var tween = $Tween
+onready var pin = $Pin
+onready var pintween = $pintween
 
 signal hovered
 signal mouse_entered
@@ -62,6 +68,31 @@ func init():
 	initial_position = global_position
 	initial_rotation = rotation
 	initial_modulate = modulate
+
+func add_pin():
+	pin.visible = true
+	pinned = true
+	pintween.stop_all()
+	pintween.interpolate_property(pin, "position",
+			pin_out, pin_in, 0.1,
+			tween.TRANS_LINEAR, tween.EASE_IN_OUT)
+	pintween.start()
+
+func remove_pin():
+	pin.visible = true
+	pinned = false
+	pintween.stop_all()
+	pintween.interpolate_property(pin, "position",
+			pin_in, pin_out, 0.1,
+			tween.TRANS_LINEAR, tween.EASE_IN_OUT)
+	pintween.connect("tween_all_completed", self, "hide_pin")
+	pintween.start()
+
+func hide_pin():
+	if pintween.is_connected("tween_all_completed", self, "hide_pin"):
+		pintween.disconnect("tween_all_completed", self, "hide_pin")
+	pin.visible = false
+
 
 func diagonal_size():
 	return (get_parent().get_parent().scale * size).length()
@@ -105,6 +136,7 @@ func _process(_delta):
 
 func click_animation(to_position: Vector2, to_scale: Vector2, to_rotation: float):
 	viewing = true
+	pin.visible = false
 	is_hovered = false
 	z_index = 1000
 	if has_drag_stared:
@@ -215,3 +247,5 @@ func _on_Tween_tween_all_completed(is_showing=false):
 		viewing = false
 		is_hovered = false
 		z_index = 0
+		if pinned:
+			pin.visible=true
