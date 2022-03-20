@@ -29,7 +29,7 @@ shader_param/drag = 3.5
 shader_param/scatter = 2.0
 shader_param/random_colors = SubResource( 5 )
 
-[node name="Level" type="Node"]
+[node name="Level2" type="Node"]
 script = ExtResource( 2 )
 music = 1
 start_level = ExtResource( 3 )

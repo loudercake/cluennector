@@ -26,7 +26,7 @@ anchor_bottom = 0.9
 margin_right = 512.0
 margin_bottom = 38.0
 size_flags_vertical = 3
-text = "Detectkve"
+text = "Detective"
 
 [node name="VSpace" type="Control" parent="VBoxContainer"]
 margin_top = 42.0

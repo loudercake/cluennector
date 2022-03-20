@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource( 1 )
-description = "A man with a slightly unusual 3-sided head has been accused of putting vitamin gummies on the water supply."
+description = "A man with a slightly unusual 3-sided head has been accused of putting vitamin gummies in the water supply."
 texture = ExtResource( 2 )
 next = [ ExtResource( 3 ) ]
 pos = Vector2( 140, 270 )

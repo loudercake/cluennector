@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource( 1 )
-description = "An illegal firework of one of the delinquents,"
+description = "An illegal firework of one of the delinquents."
 texture = ExtResource( 2 )
 next = [ ExtResource( 3 ) ]
 pos = Vector2( 455, 100 )

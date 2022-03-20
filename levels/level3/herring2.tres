@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource( 1 )
-description = "A test picture taken with one of the suspect's Generic Brand Pictures Model 7"
+description = "A test picture taken with one of the suspects' Generic Brand Pictures Model 7"
 texture = ExtResource( 2 )
 next = [  ]
 pos = Vector2( 500, 430 )
