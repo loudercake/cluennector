@@ -1,6 +1,8 @@
 # Cluennector
 
-Connect clues puzzle game. It includes a main mode (detective) and 3 extras: geography, history and pokemon,
+![image](https://user-images.githubusercontent.com/24435787/159176558-9ddc7108-2009-4e76-bfb4-b62b3c656a44.png)
+
+Connect clues puzzle game. It includes a main mode (detective) and 3 extras/wip: geography, history and pokemon,
 
 Live demo at: https://cluennector.herokuapp.com/
 
@@ -56,4 +58,4 @@ This way you can have multiple of this level resource connect one to next.
 
 
 # BUGS
-- [ ] Something is wrong with the connections click handling (sometimes starts dashed line when it should just click)
+- [ ] Something is wrong with the connections click handling (when you have just dragged to a clue you can't examine it)
