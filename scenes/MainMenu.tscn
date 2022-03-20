@@ -1,14 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/PublicPixel-0W5Kv.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scenes/Theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/speaker-muted.png" type="Texture" id=4]
+[ext_resource path="res://assets/speaker-on.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=4]
 size = 28
 outline_size = 3
 outline_color = Color( 1, 0.411765, 0.380392, 1 )
 font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=5]
+CheckButton/icons/off = ExtResource( 4 )
+CheckButton/icons/off_disabled = ExtResource( 4 )
+CheckButton/icons/on = ExtResource( 5 )
+CheckButton/icons/on_disabled = ExtResource( 5 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -124,8 +132,20 @@ text = "*experimental
 align = 1
 valign = 1
 
+[node name="music" type="CheckButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -206.0
+margin_top = 50.0
+margin_right = -130.0
+margin_bottom = 122.0
+hint_tooltip = "Disable music"
+theme = SubResource( 5 )
+pressed = true
+
 [connection signal="pressed" from="VBoxContainer/GameBtn" to="." method="_on_GameBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/GeoBtn" to="." method="_on_GeoBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/HistoryBtn" to="." method="_on_HistoryBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/PokeBtn" to="." method="_on_PokeBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitBtn" to="." method="_on_QuitBtn_pressed"]
+[connection signal="toggled" from="music" to="." method="_on_music_toggled"]

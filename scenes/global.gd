@@ -4,6 +4,8 @@ var next_level = null
 var next_cc = null
 
 var music_player = AudioStreamPlayer.new()
+var music_muted = false
+var came_from_menu = true
 
 
 # Let's preload the audio effects
@@ -22,17 +24,32 @@ var music_list = [
     preload("res://assets/sound/geography.ogg"),
     preload("res://assets/sound/geography.ogg"),
     preload("res://assets/sound/geography.ogg"),
+    preload("res://assets/sound/menu-theme.ogg"),
 ]
 
 func _ready():
 	add_child(music_player)
 
+func is_from_menu():
+	var before = came_from_menu
+	came_from_menu = false
+	return before
+
+func menu_button():
+	music_player.playing = false
+	music_player.stop()
+	play(0)
+
 func play_music(m):
+	if music_muted:
+		return
 	music_player.stop()
 	music_player.stream = music_list[m]
 	music_player.play()
 
 func play_music_once(m):
+	if music_muted:
+		return
 	play_music(m)
 	if not music_player.is_connected("finished", self, "stop_music_player"):
 		music_player.connect("finished", self, "stop_music_player")

@@ -72,6 +72,7 @@ margin_left = 13.0
 margin_top = -103.0
 margin_right = 110.0
 margin_bottom = -77.0
+shortcut_in_tooltip = false
 shortcut = SubResource( 2 )
 text = "Main Menu"
 

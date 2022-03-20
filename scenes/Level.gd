@@ -77,7 +77,7 @@ func if_not_null_set():
 			set(attr, value)
 
 func _ready():
-	if not Global.music_player.playing:
+	if Global.came_from_menu:
 		Global.play_music(music)
 
 	# This is so children classes can overwrite the ready function doing stuff before it
