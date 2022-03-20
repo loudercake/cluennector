@@ -104,9 +104,9 @@ func add_event(json, idx):
 	return true
 
 func on_request_error(_extra):
-	# on_level_ready()
-	top_label.text = "Error loading level :("
-	erroed = true
+	return get_tree().reload_current_scene()
+	# top_label.text = "Error loading level :("
+	# erroed = true
 
 func on_add_error(clue_resource):
 	var texture = load("res://levels/histlevel/question_mark.png")

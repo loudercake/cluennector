@@ -112,8 +112,8 @@ func check_chain_completed():
 		on_level_ready()
 
 func on_request_error(_extra):
-	# on_level_ready()
-	top_label.set_deferred("text", "Error loading level :(")
+	return get_tree().reload_current_scene()
+	# top_label.set_deferred("text", "Error loading level :(")
 
 func _on_NextLevelBtn_pressed():
 	description_label.text = "loading next level... "
