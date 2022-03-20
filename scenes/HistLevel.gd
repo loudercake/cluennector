@@ -120,14 +120,15 @@ func add_texture(texture, clue_resource):
 			return
 
 func _on_NextLevelBtn_pressed():
-	description_label.text = "loading next level... "
+	description_label.bbcode_text = bbwrap("loading next level... ", "center")
 	generate_random_level()
 	return get_tree().reload_current_scene()
 
 func win_level():
 	.win_level()
+	description_label.bbcode_text = "[center]"
 	for text in events_texts:
-		description_label.text += text + "\n"
+		description_label.append_bbcode(text + "\n")
 
 # Reset button
 func _on_Button_pressed():

@@ -48,10 +48,10 @@ func _on_LineEdit_text_changed(new_text:String):
 		return
 
 	line_edit.hint_tooltip = "Country code"
-	resetbtn.text = "RESET"
+	resetbtn.text = "CLEAR"
 
 func _on_NextLevelBtn_pressed():
-	description_label.text = "loading next level... "
+	description_label.bbcode_text = bbwrap("loading next level... ", "center")
 	generate_random_level()
 	return get_tree().reload_current_scene()
 
@@ -61,6 +61,6 @@ func _level_reset():
 		Global.next_cc = cc
 		._level_reset()
 	elif len(cc) > 0:
-		description_label.text = "'" + cc + "' is an invalid country code!"
+		description_label.bbcode_text = bbwrap("'" + cc + "' is an invalid country code!", "center")
 	else:
 		._level_reset()

@@ -27,7 +27,6 @@ margin_left = 6.0
 margin_top = 17.0
 margin_right = -196.0
 margin_bottom = 31.0
-text = ""
 
 [node name="ResetButton" parent="UI/Control" index="2"]
 margin_left = -64.0
@@ -46,7 +45,6 @@ focus_next = NodePath("../ResetButton")
 margin_top = -34.0
 margin_right = -105.0
 margin_bottom = 66.0
-text = ""
 
 [node name="NextLevelBtn" parent="UI/Control" index="6"]
 visible = true

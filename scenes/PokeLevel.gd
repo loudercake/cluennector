@@ -9,6 +9,9 @@ var n_chains = 0
 var completed_chains = 0
 var pokemon_ids = []
 
+func bbwrap(text, tag):
+	return "[" + tag + "]" + text + "[/" + tag + "]"
+
 func _on_ready():
 	API = "https://pokeapi.co/api/v2/"
 	border_width_override = 2.0
@@ -116,6 +119,6 @@ func on_request_error(_extra):
 	# top_label.set_deferred("text", "Error loading level :(")
 
 func _on_NextLevelBtn_pressed():
-	description_label.text = "loading next level... "
+	description_label.bbcode_text = bbwrap("loading next level... ", "center")
 	generate_random_level()
 	return get_tree().reload_current_scene()

@@ -68,6 +68,8 @@ func debug_img(texture):
 	add_child(texture_rect)
 	texture_rect.texture = texture
 
+func bbwrap(text, tag):
+	return "[" + tag + "]" + text + "[/" + tag + "]"
 
 func if_not_null_set():
 	var attributes = ["clue_max_rotation", "clue_max_random_offset", "clue_max_random_scale", "clue_base_size", "n_rows"]
@@ -79,6 +81,7 @@ func if_not_null_set():
 func _ready():
 	if Global.came_from_menu:
 		Global.play_music(music)
+		Global.came_from_menu = false
 
 	# This is so children classes can overwrite the ready function doing stuff before it
 	_on_ready()
@@ -177,7 +180,7 @@ func _process(_delta):
 		background.visible = false
 		viewing_clue = null
 		Global.play(SFX.PAPER)
-		description_label.text = ""
+		description_label.bbcode_text = ""
 
 	if Input.is_action_just_released("mouse_left_click"):
 		is_connecting = false
@@ -215,7 +218,7 @@ func on_clue_mouse_entered(clue):
 # hover after delay
 func on_clue_hover(clue):
 	if not viewing_clue:
-		description_label.text = clue.get_title() + "\n\nClick to view\nDrag to connect\nRight click to disconnect"
+		description_label.bbcode_text = bbwrap(clue.get_title(), "center") + "\n\n" + "[color=#ff0000]" + (bbwrap("Click to examine\nDrag to connect\nRight click to disconnect", "b")) + "[/color]"
 
 # unhover and mouse exit
 func on_clue_unhover(_clue):
@@ -223,7 +226,7 @@ func on_clue_unhover(_clue):
 	if not is_connecting:
 		can_connect = false
 	if not viewing_clue:
-		description_label.text = ""
+		description_label.bbcode_text = ""
 
 # Mouse release over same clue
 func on_clue_click(clue):
@@ -240,7 +243,7 @@ func on_clue_click(clue):
 		return
 
 	var center = (top_left + bottom_right) / 2
-	description_label.text = clue.description
+	description_label.bbcode_text = bbwrap(clue.description, "center")
 	clue.click_animation(center, Vector2.ONE * clue_view_scale, 2 * PI)
 	viewing_clue = clue
 	background.visible = true
@@ -323,7 +326,7 @@ func win_level():
 	win_btn.visible = true
 	win_btn.grab_focus()
 	top_label.text = "You won!"
-	description_label.text = ""
+	description_label.bbcode_text = ""
 	for clue in board_clues:
 		clue.disconnect("hovered", self, "on_clue_hover")
 		clue.disconnect("mouse_entered", self, "on_clue_mouse_entered")
@@ -363,7 +366,7 @@ func _on_HelpBtn_pressed():
 	Global.play(SFX.BUTTON)
 	check_chain_complete()
 	if help_hint != null:
-		description_label.text = help_hint
+		description_label.bbcode_text = bbwrap(help_hint, "center")
 
 
 func _on_Win_Timer_timeout():

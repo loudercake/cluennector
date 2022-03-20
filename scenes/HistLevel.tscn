@@ -29,7 +29,6 @@ margin_top = 24.0
 margin_right = -194.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 4 )
-text = ""
 autowrap = true
 
 [node name="ResetButton" parent="UI/Control" index="2"]
@@ -49,8 +48,6 @@ focus_next = NodePath("../ResetButton")
 margin_top = -18.0
 margin_right = -111.0
 margin_bottom = 66.0
-custom_fonts/font = ExtResource( 4 )
-text = ""
 
 [node name="NextLevelBtn" parent="UI/Control" index="6"]
 visible = true
