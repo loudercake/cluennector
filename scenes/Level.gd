@@ -24,6 +24,7 @@ const HttpHelper = preload("HttpHelper.gd")
 
 export(Resource) var start_level
 export(bool) var debug_mode = true
+export(bool) var backspace_shortcut = true
 
 var clue_max_rotation = 20
 var clue_max_random_offset = 70
@@ -168,7 +169,7 @@ func _level_reset():
 
 func _process(_delta):
 	if debug_mode:
-		if Input.is_action_just_pressed("reset"):
+		if Input.is_action_just_pressed("reset") and backspace_shortcut:
 			_level_reset()
 
 	if Input.is_action_just_released("mouse_left_click") and viewing_clue:
@@ -214,7 +215,7 @@ func on_clue_mouse_entered(clue):
 # hover after delay
 func on_clue_hover(clue):
 	if not viewing_clue:
-		description_label.text = clue.get_title()
+		description_label.text = clue.get_title() + "\n\nClick to view\nDrag to connect\nRight click to disconnect"
 
 # unhover and mouse exit
 func on_clue_unhover(_clue):

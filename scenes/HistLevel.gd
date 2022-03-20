@@ -11,13 +11,17 @@ onready var http = HttpHelper.new(self)
 var n_clues_added = 0
 var events_texts = PoolStringArray()
 var border_width_override = 8.0
+var erroed = false
 
 func _on_ready():
 	http = HttpHelper.new(self)
+	erroed = false
 	generate_random_level()
 
 func on_level_ready():
 	._load_from_global()
+	if not Global.next_level:
+		Global.next_level = start_level
 	var start_level = Global.next_level
 	var clues_array = (start_level.story + start_level.decoy)
 	if len(clues_array) > 10:
@@ -35,7 +39,7 @@ func generate_random_level():
 	top_label.text = "Loading..."
 	randomize()
 	var datetime = OS.get_datetime_from_unix_time(randi())
-	var date = str(datetime["month"]) + "/" + str(datetime["day"])
+	var date = str(datetime["day"]) + "/" + str(datetime["month"])
 	var url = API + date
 	http.json_get_request(url, [], "on_wiki_info", date, "on_request_error")
 
@@ -100,8 +104,9 @@ func add_event(json, idx):
 	return true
 
 func on_request_error(_extra):
-	on_level_ready()
+	# on_level_ready()
 	top_label.text = "Error loading level :("
+	erroed = true
 
 func on_add_error(clue_resource):
 	var texture = load("res://levels/histlevel/question_mark.png")
@@ -123,3 +128,11 @@ func win_level():
 	.win_level()
 	for text in events_texts:
 		description_label.text += text + "\n"
+
+# Reset button
+func _on_Button_pressed():
+	if erroed:
+		._on_Button_pressed()
+		return
+	for clue in board_clues:
+		clue.next = []

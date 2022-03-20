@@ -1,13 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/GeoLevel.gd" type="Script" id=2]
 [ext_resource path="res://levels/countries/level.tres" type="Resource" id=3]
+[ext_resource path="res://assets/PublicPixel-0W5Kv.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+font_data = ExtResource( 4 )
 
 [node name="Level" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 music = 2
 start_level = ExtResource( 3 )
+backspace_shortcut = false
 
 [node name="Board" parent="." index="2"]
 scale = Vector2( 9.2, 8 )
@@ -18,24 +24,46 @@ margin_top = 11.0
 margin_right = -269.0
 margin_bottom = 25.0
 
+[node name="ResetButton" parent="UI/Control" index="2"]
+margin_left = -72.0
+margin_right = 9.0
+
 [node name="HelpBtn" parent="UI/Control" index="3"]
 visible = true
-margin_left = -261.0
-margin_right = -180.0
+margin_left = -316.0
+margin_right = -235.0
 focus_next = NodePath("../LineEdit")
+
+[node name="NextLevelBtn" parent="UI/Control" index="6"]
+margin_left = -142.0
+margin_top = -2.0
+margin_right = 25.0
+margin_bottom = 18.0
+text = "Random level"
 
 [node name="LineEdit" type="LineEdit" parent="UI/Control" index="7"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -171.0
-margin_top = 3.0
-margin_right = -107.0
-margin_bottom = 27.0
+margin_left = -230.0
+margin_top = 4.0
+margin_right = -76.0
+margin_bottom = 30.0
 focus_next = NodePath("../ResetButton")
-max_length = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 1 )
+max_length = 3
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+clear_button_enabled = true
+selecting_enabled = false
+placeholder_text = "Random"
+caret_blink = true
 
 [node name="TopLeft" parent="BoardLimits" index="0"]
 position = Vector2( -35, -14 )
 
 [node name="BottomRight" parent="BoardLimits" index="1"]
 position = Vector2( 1204, 550 )
+
+[connection signal="text_changed" from="UI/Control/LineEdit" to="." method="_on_LineEdit_text_changed"]

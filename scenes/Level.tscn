@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/board.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Level.gd" type="Script" id=2]
 [ext_resource path="res://levels/level1/level1.tres" type="Resource" id=3]
 [ext_resource path="res://scenes/DrawingCanvas.gd" type="Script" id=4]
 [ext_resource path="res://shaders/confetti.shader" type="Shader" id=5]
+[ext_resource path="res://scenes/InGameTheme.tres" type="Theme" id=6]
+[ext_resource path="res://scenes/NextButtonTheme.tres" type="Theme" id=7]
 
 [sub_resource type="InputEventAction" id=1]
 action = "menu"
@@ -61,6 +63,7 @@ margin_top = 5.0
 margin_right = 1235.0
 margin_bottom = 681.0
 mouse_filter = 2
+theme = ExtResource( 6 )
 
 [node name="MenuButton" type="Button" parent="UI/Control"]
 anchor_top = 1.0
@@ -76,6 +79,7 @@ text = "Main Menu"
 anchor_right = 1.0
 margin_right = -189.0
 margin_bottom = 14.0
+text = "test"
 align = 1
 
 [node name="ResetButton" type="Button" parent="UI/Control"]
@@ -109,6 +113,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -62.0
 margin_bottom = 24.0
+text = "
+"
 align = 1
 autowrap = true
 
@@ -118,8 +124,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -107.0
-margin_top = -20.0
+margin_left = -112.0
+margin_top = -5.0
+margin_right = 28.0
+margin_bottom = 13.0
+theme = ExtResource( 7 )
 text = "Next Level"
 
 [node name="BoardLimits" type="Node2D" parent="."]

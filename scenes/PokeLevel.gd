@@ -33,10 +33,13 @@ func generate_random_level():
 	randomize()
 	n_chains = randi() % MAX_N_CHAINS + 1 + n_decoys
 	for _i in n_chains - n_decoys:
-		randomize()
-		var chain = randi() % N_CHAINS + 1
-		var url = API + "evolution-chain/" + str(chain)
-		http.json_get_request(url, [], "on_chain_info", null, "on_request_error")
+		queue_new_chain()
+
+func queue_new_chain():
+	randomize()
+	var chain = randi() % N_CHAINS + 1
+	var url = API + "evolution-chain/" + str(chain)
+	http.json_get_request(url, [], "on_chain_info", null, "on_request_error")
 
 
 func generate_clue(evolution, child=[]):
@@ -94,6 +97,10 @@ func on_chain_info(json, is_decoy):
 		return
 
 	var chain = json["chain"]["evolves_to"]
+	if len(chain) == 0:
+		queue_new_chain()
+		return
+
 	var child = generate_clue(json["chain"])
 	add_evolutions(chain, child)
 	check_chain_completed()

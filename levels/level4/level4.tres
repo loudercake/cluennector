@@ -11,7 +11,7 @@
 
 [resource]
 script = ExtResource( 5 )
-title = ""
+title = "Newspaper"
 story = [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 2 ) ]
 decoy = [  ]
 next_level = ExtResource( 4 )

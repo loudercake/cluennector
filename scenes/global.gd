@@ -34,10 +34,12 @@ func play_music(m):
 
 func play_music_once(m):
 	play_music(m)
-	music_player.connect("finished", self, "stop_music_player")
+	if not music_player.is_connected("finished", self, "stop_music_player"):
+		music_player.connect("finished", self, "stop_music_player")
 
 func stop_music_player():
-	music_player.disconnect("finished", self, "stop_music_player")
+	if music_player.is_connected("finished", self, "stop_music_player"):
+		music_player.disconnect("finished", self, "stop_music_player")
 	music_player.stop()
 
 # Play audio effect

@@ -34,7 +34,21 @@ func generate_random_level():
 	Global.next_level.story = []
 	Global.next_level.story.append(start_clue)
 	Global.next_level.story.append_array(start_clue.next)
+	line_edit = $UI/Control/LineEdit
+	line_edit.text = cc
+	line_edit.hint_tooltip = start_clue.description
 
+func _on_LineEdit_text_changed(new_text:String):
+	var cc = line_edit.text.to_lower()
+	if len(cc) == 2 and cc in ccodes:
+		var clue = load("res://levels/countries/clues/" + cc + ".tres")
+		line_edit.set_deferred('text', cc)
+		line_edit.set_deferred('hint_tooltip', clue.description)
+		resetbtn.set_deferred('text', "Generate")
+		return
+
+	line_edit.hint_tooltip = "Country code"
+	resetbtn.text = "RESET"
 
 func _on_NextLevelBtn_pressed():
 	description_label.text = "loading next level... "
@@ -42,11 +56,11 @@ func _on_NextLevelBtn_pressed():
 	return get_tree().reload_current_scene()
 
 func _level_reset():
-	var text = line_edit.text.to_lower()
-	if len(text) == 2 and text in ccodes:
-		Global.next_cc = text
+	var cc = line_edit.text.to_lower()
+	if len(cc) == 2 and cc in ccodes:
+		Global.next_cc = cc
 		._level_reset()
-	elif len(text) > 0:
-		description_label.text = text + " is an invalid country code!"
+	elif len(cc) > 0:
+		description_label.text = "'" + cc + "' is an invalid country code!"
 	else:
 		._level_reset()
