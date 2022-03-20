@@ -39,9 +39,9 @@ This way you can have multiple of this level resource connect one to next.
 
 # TODO
 
-- [ ] Music
-- [ ] Sound effects
-- [ ] Fonts
+- [x] Music
+- [x] Sound effects
+- [x] Fonts
 - [ ] Better buttons, ui's, etc
 - [x] Main menu
 - [ ] Animation effect on filling the board with clues
@@ -57,4 +57,3 @@ This way you can have multiple of this level resource connect one to next.
 
 # BUGS
 - [ ] Something is wrong with the connections click handling (sometimes starts dashed line when it should just click)
-- [ ] Pokemon mode doesn't fill the board half of the times (api throttling?)
