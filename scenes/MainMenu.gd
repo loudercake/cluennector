@@ -8,6 +8,7 @@ onready var histbtn = $VBoxContainer/HistoryBtn
 onready var musicbtn = $music
 
 func _ready():
+	Global.save_level()
 	gamebtn.grab_focus()
 	musicbtn.pressed = not Global.music_muted
 	Global.next_level = null
@@ -15,27 +16,34 @@ func _ready():
 	Global.play_music(-1)
 	Global.came_from_menu = true
 
-func _on_GameBtn_pressed():
+func load_mode(scene_path):
 	Global.menu_button()
-	return get_tree().change_scene("res://scenes/Level.tscn")
+	var root = get_tree().get_root()
+	var current_scene = root.get_child(root.get_child_count() - 1)
+	current_scene.queue_free()
+	var scene = load(scene_path).instance()
+	var level = Global.load_last_level(scene_path)
+	if level:
+		scene.start_level = level
+	get_tree().get_root().add_child(scene)
+	return get_tree().set_current_scene(scene)
+
+func _on_GameBtn_pressed():
+	load_mode("res://scenes/Level.tscn")
 
 func _on_GeoBtn_pressed():
-	Global.menu_button()
-	return get_tree().change_scene("res://scenes/GeoLevel.tscn")
+	load_mode("res://scenes/GeoLevel.tscn")
 
 func _on_HistoryBtn_pressed():
-	Global.menu_button()
-	return get_tree().change_scene("res://scenes/HistLevel.tscn")
+	load_mode("res://scenes/HistLevel.tscn")
 
 func _on_PokeBtn_pressed():
-	Global.menu_button()
-	return get_tree().change_scene("res://scenes/PokeLevel.tscn")
+	load_mode("res://scenes/PokeLevel.tscn")
 
 func _on_QuitBtn_pressed():
 	Global.menu_button()
 	if OS.get_name() == "HTML5":
 		JavaScript.eval("confirm('Close this tab?') && window.close();")
-		return
 	get_tree().quit()
 
 

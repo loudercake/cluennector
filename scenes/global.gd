@@ -7,6 +7,9 @@ var music_player = AudioStreamPlayer.new()
 var music_muted = false
 var came_from_menu = true
 
+var last_level_for_mode = {}
+var current_scene_path = ""
+
 
 # Let's preload the audio effects
 var sfx_list = [
@@ -66,3 +69,12 @@ func play(m):
 	add_child(streamplayer)
 	streamplayer.stream = sfx_list[m]
 	streamplayer.play()
+
+func save_level():
+	last_level_for_mode[current_scene_path] = next_level
+
+func load_last_level(scene_path):
+	current_scene_path = scene_path
+	var level = last_level_for_mode.get(scene_path)
+	next_level = level if level else null
+	return next_level
