@@ -12,5 +12,5 @@ zip macos.zip macos/*
 zip windows.zip windows/*
 mv *.zip release/
 
-VERSION=$(git describe --tags --abbrev=0 || echo "v0")
+VERSION=$(git describe --tags --abbrev=0)
 ./ghr/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./release/
