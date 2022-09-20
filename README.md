@@ -1,3 +1,5 @@
+[![Cloudflare Pages](https://img.shields.io/endpoint?url=https://cloudflare-pages-badges.mattf.workers.dev//?projectName=cluennector)](https://cluennector.pages.dev/)
+
 # Cluennector
 
 ![image](https://user-images.githubusercontent.com/24435787/159176558-9ddc7108-2009-4e76-bfb4-b62b3c656a44.png)
